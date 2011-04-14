@@ -1,0 +1,489 @@
+/* Cherokee Web Site: CSS */
+
+html,body,div,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,input,button,textarea,p,blockquote,th,td {margin:0; padding:0;}
+table{ border-collapse: collapse; border-spacing:0; }
+fieldset,img{border:0;}
+th{text-align:left;}
+input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}
+input,button,textarea,select{*font-size:100%;}
+strong {font-weight: bold;}
+em {font-style: italic;}
+code {font-family: courier;}
+img {display: block; border: none;}
+ul {list-style: none;}
+
+@font-face {
+ font-family: "CA BND Web Bold";
+ src: url(/static/fonts/CABNDWebBold.otf) format("opentype");
+}
+
+html, body { height: 100%; }
+body { background: #eff5fd url(../images/bar.png) repeat-x;  font-family: Helvetica, Arial, Tahoma, sans-serif; font-size: 14px; text-align: center; color: #222; }
+a { color: #3465a4; }
+a:hover { color: #c00; text-decoration: underline; }
+h1, h2, h3 { font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: normal; margin: 0 0 8px 0; padding:0; }
+h1 { color: #c00; font: 48px/48px "CA BND Web Bold", Verdana, Arial, Helvetica, sans-serif; }
+h1 a { color: #c00; text-decoration: none; }
+h1 a:hover { color: #c00; text-decoration: underline; }
+h2 { color: #174783; font-size: 150%; font: 24px/24px "CA BND Web Bold", Verdana, Arial, Helvetica, sans-serif; padding-bottom: 8px; margin: 32px 0 16px 0; border-bottom: 1px solid #def; }
+.body-index h2 { margin-top: 0; }
+h3 { color: #666; font-size: 120%; font-weight: normal; }
+p { margin-bottom: 1em; line-height: 1.5em; }
+.clr:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+.clr { display: inline-block; }
+* html .clr { height: 1%; }
+* .clr { display: block; }
+.p33 { width: 33%; float: left; }
+ul.list { list-style-type: disc; padding-left: 2em; margin-bottom: 1em; }
+ul.list li { line-height: 1.5em; }
+#container { background: #fff; width: 980px; margin: 16px auto; text-align: left; min-height: 100%; border: 1px solid #cde; }
+#footer { width: 980px; margin: 0 auto; text-align: left; }
+#footer-inner { font-size: 90%; padding: 22px 32px 32px 90px; color: #3465a4; background: transparent url(../images/o.png) 16px 16px no-repeat; }
+#bar  { width: 980px; margin: 0 auto; height: 52px; }
+#sprint  { background: #eff5fd url(../images/sprint.png) top center no-repeat; height: 216px; }
+#mainmsg { padding: 12px 32px 32px 16px; margin-left: 360px; }
+#mainmsg h1 { color: #fff; font-size: 30px; font-weight: bold; text-shadow: #072e5e 0px 1px 0px; text-transform: uppercase; margin: 0; padding-bottom: 0px; }
+#mainmsg p { color: #072e5e; font-size: 18px; }
+#nav { padding: 4px 0px 4px 0px; float: right; height: 22px; margin-top: 12px; }
+#nav ul { margin:0 0 0 12px; padding:0;font-family: Helvetica, Arial, sans-serif; font-size: 16px; padding-left: 8px;}
+#nav ul li {float: left; margin: 0;padding: 0;text-align: center;}
+#nav ul li a { display: block;line-height: 1.4em;padding: 0px 24px 0px 0;margin: 0;text-decoration: none;color: #b4d9ec;border: none;-webkit-transition: color .2s linear;}
+#nav ul li a:hover { color: #fff; text-decoration: none;}
+#logo { width: 220px; padding: 0; position: absolute; top: 0;}
+#download { background: transparent url(../images/get.png) no-repeat; float: right; width: 192px; height: 48px; font-size: 11px; color: #f0fff0; text-decoration: none; padding: 8px; -webkit-transition: color .2s linear; padding-left: 46px; }
+#download span { font-size: 16px; font-weight: bold; text-shadow: #1f681f 0px 1px 0px; }
+#download:hover { color: #fff; }
+#main { padding: 32px 16px 64px 16px; }
+#wide { width: 656px; float: left; }
+#sidebar { width: 256px; float: right; }
+.features { padding-bottom: 16px; }
+.features strong { font-size: 120%; }
+.features ul {
+list-style-type: none;
+padding: 0;
+margin: 0;
+text-align: left;
+}
+
+.features li { margin: 0 0 16px 0; padding-left: 24px; background: #fff url(../images/ok.png) 0 2px no-repeat; }
+#screencasts { padding: 40px 8px 0px 102px; height: 128px; background: #fff url(../images/screencasts.png) 8px 8px no-repeat; font-size: 90%; text-align: center; }
+#screencasts a { font-weight: bold; }
+.twtr-ft img { display: none; }
+.spacer { height: 64px; }
+
+
+
+/**********************************************************
+ * index
+ **********************************************************/
+.index-section {
+ color: #666;
+ padding-left: 70px;
+ min-height: 64px;
+ margin-bottom: 8px;
+}
+
+.index-section p {
+ color: #333;
+ margin: 0;
+ padding: 0;
+}
+
+.index-section:hover {
+ cursor: pointer;
+}
+
+.index-section:hover h2 a {
+ color: #c00;
+}
+
+.index-section h2 {
+ color: #204a87;
+ border-bottom: 0;
+ margin-bottom: 0;
+}
+
+.index-section h2 a {
+ color: #204a87;
+ text-decoration: none;
+}
+
+.index-section p a {
+ color: #333;
+ text-decoration: none;
+}
+
+
+.branding {
+ background: #fff url(/images/branding.png) top left no-repeat;
+}
+
+.support {
+ background: #fff url(/images/support.png) top left no-repeat;
+}
+
+.benchmark {
+ background: #fff url(/images/benchmark.png) top left no-repeat;
+}
+
+.screencast {
+ background: #fff url(/images/screencast.png) top left no-repeat;
+}
+
+/**********************************************************
+ * Screencasts
+ **********************************************************/
+
+#screencast_wrapper {
+    align:center;
+    width:100%;
+}
+
+#screencast_player {
+    display:block;
+    width:920px;
+    align:center;
+}
+
+#screencast_table {
+    width:90%;
+    text-align:center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-spacing: 0;
+}
+
+#screencast_table tr {
+    height: 25px;
+}
+
+#screencast_table th,tr {
+    text-align:left;
+}
+
+#screencast_table th A:hover {
+    text-decoration: underline;
+}
+
+#screencast_table .down {
+    text-align:center;
+}
+
+#screencast_table .time {
+    text-align:right;
+}
+
+#screencast_table a {
+    cursor: pointer;
+}
+
+
+/**********************************************************
+ * Styles for Domains using Cherokee
+ **********************************************************/
+.notify
+{
+border: 1px #567397 solid;
+height: auto;
+width: 90%
+padding: 8px;
+text-align: center;
+-moz-border-radius: 5px;
+}
+
+.notify_ok
+{
+background: #f5f9fd;
+}
+
+.notify_error
+{
+background: #fbf7da;
+}
+
+#submit_domain
+{
+width: 90px;
+border: 1px solid #999999;
+border-top-color: #CCCCCC;
+border-left-color: #CCCCCC;
+font-size: 22px;
+-moz-border-radius: 3px;
+white-space: nowrap;
+float: right;
+height: 40px;
+text-align: center;
+}
+
+
+#cherokee_domains {
+-moz-border-radius: 7px;
+border: 1px #dddddd solid;
+background: #3465A4;
+background-image: url(../images/domains_bg.png);
+margin: 20px;
+padding: 20px;
+}
+
+#cherokee_domains form div {
+padding-top: 16px;
+}
+
+#cherokee_domains form button#submit {
+border:0;
+float: right;
+width: 93px;
+height: 40px;
+border-top-style: none;
+border-right-style-value: none;
+border-bottom-style: none;
+border-left-style-value: none;
+border-left-style-ltr-source: physical;
+border-left-style-rtl-source: physical;
+border-right-style-ltr-source: physical;
+border-right-style-rtl-source: physical;
+text-indent: -5000px;
+background-color: transparent;
+background-image: url(../images/domains_submit.png);
+background-repeat: no-repeat;
+background-attachment: scroll;
+background-position: left top;
+}
+
+#cherokee_domains form button#submit:hover {
+background-position: left -40px;
+}
+
+
+#cherokee_domains form input {
+font-size: 22px;
+background-color: #ffffff;
+background-image: url(../images/domains_input.png);
+background-repeat: repeat-x;
+background-attachment: scroll;
+padding-top: 5px;
+padding-right: 5px;
+padding-bottom: 5px;
+padding-left: 5px;
+border-top-width: 1px;
+border-right-width-value: 1px;
+border-right-width-ltr-source: physical;
+border-right-width-rtl-source: physical;
+border-bottom-width: 1px;
+border-left-width-value: 1px;
+border-left-width-ltr-source: physical;
+border-left-width-rtl-source: physical;
+border-top-style: solid;
+border-right-style-value: solid;
+border-right-style-ltr-source: physical;
+border-right-style-rtl-source: physical;
+border-bottom-style: solid;
+border-left-style-value: solid;
+border-left-style-ltr-source: physical;
+border-left-style-rtl-source: physical;
+border-top-color: #4f7ca4;
+border-right-color-value: #4f7ca4;
+border-right-color-ltr-source: physical;
+border-right-color-rtl-source: physical;
+border-bottom-color: #4f7ca4;
+border-left-color-value: #4f7ca4;
+border-left-color-ltr-source: physical;
+border-left-color-rtl-source: physical;
+width: 530px;
+float: left;
+color: #444444;
+}
+
+#cherokee_domains form input:focus {
+outline-color: -moz-use-text-color;
+outline-style: none;
+outline-width: 0pt;
+}
+
+#cherokee_domains form p {
+border-top-width: 1px;
+border-right-width-value: 1px;
+border-right-width-ltr-source: physical;
+border-right-width-rtl-source: physical;
+border-bottom-width: 1px;
+border-left-width-value: 1px;
+border-left-width-ltr-source: physical;
+border-left-width-rtl-source: physical;
+border-top-style: solid;
+border-right-style-value: solid;
+border-right-style-ltr-source: physical;
+border-right-style-rtl-source: physical;
+border-bottom-style: solid;
+border-left-style-value: solid;
+border-left-style-ltr-source: physical;
+border-left-style-rtl-source: physical;
+border-top-color: #6c91b5;
+border-right-color-value: #6c91b5;
+border-right-color-ltr-source: physical;
+border-right-color-rtl-source: physical;
+border-bottom-color: #6c91b5;
+border-left-color-value: #6c91b5;
+border-left-color-ltr-source: physical;
+border-left-color-rtl-source: physical;
+display: block;
+width: 542px;
+float: left;
+}
+
+
+#domain_list {
+margin-left:auto; margin-right:auto;
+margin-top: 1.5em;
+margin-bottom: 1.5em;
+text-align: center;
+}
+
+#domain_list table, .dl_table {
+margin-left:20px;
+width: 710px;
+text-align: left;
+}
+
+.dl_table {
+margin-left:20px;
+width: 710px;
+text-align: left;
+}
+
+#domain_list td {
+padding:5px;
+white-space : nowrap;
+text-align: center;
+}
+
+td.pr0  { font-size: 0.8em; color: #bbb }
+td.pr1  { font-size: 0.9em; color: #aaa }
+td.pr2  { font-size: 1.1em; color: #999 }
+td.pr3  { font-size: 1.3em; color: #888 }
+td.pr4  { font-size: 1.5em; color: #777 }
+td.pr5  { font-size: 1.7em; color: #666 }
+td.pr6  { font-size: 1.9em; color: #555 }
+td.pr7  { font-size: 2.1em; color: #444 }
+td.pr8  { font-size: 2.3em; color: #333 }
+td.pr9  { font-size: 2.4em; color: #222 }
+td.pr10 { font-size: 2.5em; color: #111 }
+
+/**********************************************************
+ * Tooltips for the documentation
+ **********************************************************/
+.tooltip_container{font-size:0.6em;}
+.hover{position:absolute;display:none;z-index:999;width:245px;height:108px;background:url(/images/tooltip.png) no-repeat}
+.hover p{margin:2em; text-align:center ; line-height:1em}
+
+
+/**********************************************************
+ * Boxes and tabs for download page
+ **********************************************************/
+#download_box {
+border: 1px solid #ddd;
+padding:10px;
+padding-left: 30px;
+}
+
+#download_box img {
+height: 48px;
+width: 48px;
+margin-right: 6px;
+border: 0;
+float: left;
+clear: left;
+}
+
+.country_name{
+padding-top: 15px;
+display: block;
+}
+
+#packages_container, #mirros_container, #rsync_container {}
+
+/**********************************************************
+ * Misc
+ **********************************************************/
+.twobars {
+ width: 100%;
+}
+
+.left {
+ float: left;
+ padding: 10px;
+ border-right: 1px solid #ddd;
+}
+
+.right {
+ float: right;
+ padding: 10px;
+}
+
+.hidden {
+ visibility: hidden;
+}
+
+#binary_packages table {
+ border:0;
+}
+
+#binary_packages img {
+ border:0;
+ margin: 0 6px 0 6px;
+}
+
+.fixedwidth {
+ width: 440px;
+}
+
+.shell {
+ border-style: solid;
+ border-color: #AAAAAA;
+ background: #EEEEEE;
+ color: #000000;
+ border-width: 1px;
+ padding: 2pt;
+ margin:15px;
+}
+
+/**********************************************************
+ * Benchmarks section
+ **********************************************************/
+.bench_img {
+ float: left;
+}
+
+
+/**********************************************************
+ * FAQ
+ **********************************************************/
+#faq {
+ float: left;
+ font-size: 95%;
+}
+
+#faq dt {
+ color: #c00;
+ font-size: 130%;
+ font-weight: bold;
+ margin: 10px;
+}
+
+
+/**********************************************************
+ * Branding
+ **********************************************************/
+#parallel li {
+ float: left;
+ margin: 0;
+ margin-left: 16pt;
+ padding-left: 0pt;
+ list-style-image: none;
+ list-style-type: none;
+ font-size: x-small;
+}
+
+#parallel li p {
+ width:  200px;
+ height: 160px;
+}
