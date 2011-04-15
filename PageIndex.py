@@ -86,9 +86,9 @@ class Home:
         page = Page.Page_Menu()
         page += Top_Banner()
         page += Highlights()
+        page += Twitter.Latest_Tweets()
         page += Commits.Latest_SVN_Commits()
         page += MailingList.Latest_Mailing_List()
-        page += Twitter.Latest_Tweets()
         return page.Render()
 
 
