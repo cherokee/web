@@ -25,6 +25,7 @@
 
 import CTK
 import Page
+import Downloads
 
 class Top_Banner (CTK.Box):
     H1 = "Evolved Web Infrastructure Software"
@@ -33,7 +34,7 @@ class Top_Banner (CTK.Box):
     def __init__ (self):
         CTK.Box.__init__ (self, {'id': 'sprint'})
 
-        latest_version = "X.Y.Z" # **TEMP**
+        latest_version = Downloads.get_latest_version()
 
         # Banner body
         box = CTK.Box ({'id': 'mainmsg'})

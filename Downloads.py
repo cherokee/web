@@ -85,6 +85,12 @@ def directory_get_lastest_version (directory):
     return dirs[-1]
 
 @cache
+def get_latest_version():
+    major = directory_get_lastest_version (config.DOWNLOADS_LOCAL)
+    minor = directory_get_lastest_version (os.path.join (config.DOWNLOADS_LOCAL, major))
+    return minor
+
+@cache
 def get_latest_version_directory():
     major = directory_get_lastest_version (config.DOWNLOADS_LOCAL)
     minor = directory_get_lastest_version (os.path.join (config.DOWNLOADS_LOCAL, major))
