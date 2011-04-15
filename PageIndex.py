@@ -25,6 +25,7 @@
 
 import CTK
 import Page
+import Commits
 import Downloads
 
 class Top_Banner (CTK.Box):
@@ -82,6 +83,7 @@ class Home:
         page = Page.Page_Menu()
         page += Top_Banner()
         page += Highlights()
+        page += Commits.Latest_SVN_Commits()
         return page.Render()
 
 
