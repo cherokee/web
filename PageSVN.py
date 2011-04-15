@@ -32,6 +32,6 @@ class SVN:
     def __call__ (self):
         page = Page.Page_Menu()
         page += CTK.RawHTML(open(self.FILE,'r').read())
-        return page.Render()
+        return CTK.HTTP_Cacheable (60, body=page.Render())
 
 CTK.publish ('^/svn(\.html)?$', SVN)
