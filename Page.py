@@ -75,5 +75,5 @@ class Page_Menu (Page_Base):
         return self
 
     def Render (self):
-        self += Footer()
+        Page_Base.__iadd__ (self, Footer())
         return Page_Base.Render (self)
