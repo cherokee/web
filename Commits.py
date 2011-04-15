@@ -30,7 +30,7 @@ import time
 SVN_QUERY_URL      = "svn://cherokee-project.com/"
 SVN_HTTP_CHANGESET = "http://svn.cherokee-project.com/changeset"
 CACHE_EXPIRATION   = 10 * 60 # 10mins
-
+COMMENT_MAX_SIZE   = 52
 
 #
 # Internals
@@ -38,13 +38,26 @@ CACHE_EXPIRATION   = 10 * 60 # 10mins
 def get_commit_list (num):
     # Query SVN server
     f = os.popen ("svn log %s --limit %d" %(SVN_QUERY_URL, num))
-    lines = [x.strip() for x in f.readlines()]
-    f.close()
+    cont = f.read()
+    try:
+        f.close()
+    except:
+        pass
 
     # Parse
-    lines = filter(lambda x: x and x[0]=='r' and ' | ' in x, lines)
-    lines = [x.split(' | ') for x in lines]
-    return lines
+    parsed = []
+
+    log_entries = cont.split("-"*72)
+    for entry in log_entries:
+        if not entry.strip():
+            continue
+
+        parts = entry.split("\n", 2)[1:]
+        parts[0] = parts[0].split(' | ')
+        parts[1] = parts[1].strip().replace('\n', ' ')
+        parsed.append (parts)
+
+    return parsed
 
 
 #
@@ -55,12 +68,18 @@ class Latest_SVN_Commits_Widget (CTK.Box):
         CTK.Box.__init__ (self, {'id': 'latest_svn_commit'})
 
         for commit in get_commit_list (num):
-            rev  = commit[0]
-            user = commit[1]
-            date = commit[2].split('(')[1][:-1]
+            rev     = commit[0][0]
+            user    = commit[0][1]
+            date    = commit[0][2].split('(')[1][:-1]
+            comment = commit[1]
+
             url  = os.path.join (SVN_HTTP_CHANGESET, rev[1:])
 
+            if len(comment) > COMMENT_MAX_SIZE:
+                comment = comment[:COMMENT_MAX_SIZE - 3] + "..."
+
             self += CTK.LinkWindow (url, CTK.RawHTML(rev))
+            self += CTK.Box ({'class': 'comment'}, CTK.RawHTML (comment))
             self += CTK.Box ({'class': 'details'}, CTK.RawHTML ('%(user)s | <b>%(date)s</b>'%(locals())))
 
 
