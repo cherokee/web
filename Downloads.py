@@ -94,6 +94,7 @@ def get_latest_version_directory():
 @cache
 def get_latest_macosx_dmg():
     latest_dir = get_latest_version_directory()
+
     for f in os.listdir (latest_dir):
         if 'mac' in f.lower():
             # Check DMG files
