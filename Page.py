@@ -62,7 +62,17 @@ class Page_Base (CTK.Page):
 class Page_Menu (Page_Base):
     def __init__ (self, *args, **kwargs):
         Page_Base.__init__ (self, *args, **kwargs)
-        self += MenuBar()
+
+        # Add MenuBar
+        Page_Base.__iadd__ (self, MenuBar())
+
+        # Main Container (tricky)
+        self.container = CTK.Box ({'id': 'container'})
+        Page_Base.__iadd__ (self, self.container)
+
+    def __iadd__ (self, widget):
+        self.container += widget
+        return self
 
     def Render (self):
         self += Footer()
