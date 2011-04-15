@@ -25,9 +25,11 @@
 
 import CTK
 import Page
+import Twitter
 import Commits
 import Downloads
 import MailingList
+
 
 class Top_Banner (CTK.Box):
     H1 = "Evolved Web Infrastructure Software"
@@ -86,6 +88,7 @@ class Home:
         page += Highlights()
         page += Commits.Latest_SVN_Commits()
         page += MailingList.Latest_Mailing_List()
+        page += Twitter.Latest_Tweets()
         return page.Render()
 
 
