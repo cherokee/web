@@ -60,7 +60,7 @@ class Latest_SVN_Commits_Widget (CTK.Box):
             date = commit[2].split('(')[1][:-1]
             url  = os.path.join (SVN_HTTP_CHANGESET, rev[1:])
 
-            self += CTK.Link (url, CTK.RawHTML(rev))
+            self += CTK.LinkWindow (url, CTK.RawHTML(rev))
             self += CTK.Box ({'class': 'details'}, CTK.RawHTML ('%(user)s | <b>%(date)s</b>'%(locals())))
 
 
