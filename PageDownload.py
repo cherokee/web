@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- Mode: python; coding: utf-8 -*-
 
 #
@@ -25,7 +24,14 @@
 #
 
 import CTK
-import PageIndex
-import PageDownload
+import Page
+import Downloads
 
-CTK.run (port=8090)
+class Download:
+    def __call__ (self):
+        page = Page.Page_Menu()
+        page += CTK.RawHTML ("downloads")
+        return page.Render()
+
+
+CTK.publish ('^/download(s)?(\.html)?$', Download)
