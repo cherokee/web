@@ -42,7 +42,7 @@ class Top_Banner (CTK.Box):
         box += CTK.RawHTML ('<p>%s</p>'%(self.P1))
 
         # Download
-        link = CTK.Link ("/cherokee-latest-tarball", props={'id': "download"})
+        link = CTK.Link ("/downloads.html", props={'id': "download"})
         link += CTK.RawHTML ("<span>Get Cherokee</span><br/>Download Cherokee %(latest_version)s"%(locals()))
         box += link
 

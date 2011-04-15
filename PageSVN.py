@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- Mode: python; coding: utf-8 -*-
 
 #
@@ -25,8 +24,14 @@
 #
 
 import CTK
-import PageIndex
-import PageDownload
-import PageSVN
+import Page
 
-CTK.run (port=8090)
+class SVN:
+    FILE = "static/html/SVN.html"
+
+    def __call__ (self):
+        page = Page.Page_Menu()
+        page += CTK.RawHTML(open(self.FILE,'r').read())
+        return page.Render()
+
+CTK.publish ('^/svn(\.html)?$', SVN)
