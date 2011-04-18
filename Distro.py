@@ -56,32 +56,40 @@ def Distro_Info():
     global latest_info
     global latest_info_expiration
 
-    if not latest_info or time.time() > latest_widget_expiration:
+    if not latest_info or time.time() > latest_info_expiration:
         latest_info            = parse_distro_index()
         latest_info_expiration = time.time() + CACHE_EXPIRATION
 
     return latest_info
 
+#
+# Utils
+#
+def get_authors():
+    # Collect Authors
+    info  = Distro_Info()
+    pkgs  = info.get('packages', {})
+
+    names = {}
+    for pkg_name in pkgs:
+        pkg = pkgs[pkg_name]
+        maintainer = pkg.get('maintainer', {})
+        name = maintainer.get('name')
+
+        if name and not names.keys():
+            names[name] = maintainer.get('email')
+
+    # {name : email}
+    return names
+
 
 #
-# Authors
+# Widgets
 #
 class Authors_List (CTK.Box):
     def __init__ (self):
-        CTK.Box.__init__ (self)
-
-        # Collect Authors
-        info  = Distro_Info()
-        pkgs  = info.get('packages', {})
-        names = {}
-
-        for pkg_name in pkgs:
-            pkg = pkgs[pkg_name]
-            maintainer = pkg.get('maintainer', {})
-            name = maintainer.get('name')
-
-            if name and not names.keys():
-                names[name] = maintainer.get('email')
+        CTK.Box.__init__ (self, {'id': 'authors_list'})
+        names = get_authors()
 
         # Build Widget
         l = CTK.List()
@@ -92,6 +100,30 @@ class Authors_List (CTK.Box):
             l += entry
 
         self += l
+
+
+class Apps_List (CTK.Box):
+    def __init__ (self):
+        CTK.Box.__init__ (self, {'id': 'apps_list'})
+        info = Distro_Info()
+        pkgs = info.get('packages', {})
+
+        l = CTK.List()
+        self += l
+
+        for pkg_name in pkgs:
+            pkg = pkgs[pkg_name]
+
+            # Icon
+            icon_url = os.path.join (config.DOWNLOADS_WEB, 'distribution', pkg_name, 'icons',
+                                     pkg.get('software',{}).get('icon_small',''))
+
+            image = CTK.Image ({'src': icon_url})
+
+            box  = CTK.Box ({'class': 'app_entry'})
+            box += CTK.Box ({'class': 'title'}, CTK.RawHTML (pkg.get('software',{}).get('name','')))
+            box += CTK.Box ({'class': 'icon'},  image)
+            l+= box
 
 
 latest_auth_wid            = None

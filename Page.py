@@ -77,3 +77,20 @@ class Page_Menu (Page_Base):
     def Render (self):
         Page_Base.__iadd__ (self, Footer())
         return Page_Base.Render (self)
+
+
+#
+# Pages Sidebar
+#
+class Page_Menu_Side (Page_Menu):
+    def __init__ (self, *args, **kwargs):
+        Page_Menu.__init__ (self, *args, **kwargs)
+        self.main    = CTK.Box({'id': 'main_area'})
+        self.sidebar = CTK.Box({'id': 'sidebar'})
+
+        Page_Menu.__iadd__ (self, self.sidebar)
+        Page_Menu.__iadd__ (self, self.main)
+
+    def __iadd__ (self, widget):
+        self.main += widget
+        return self
