@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- Mode: python; coding: utf-8 -*-
 
 #
@@ -24,10 +23,25 @@
 # 02110-1301, USA.
 #
 
+import os
 import CTK
-import PageIndex
-import PageDownload
-import PageSVN
-import PageDistro
+import Page
+import Distro
 
-CTK.run (port=8090)
+URL_BASE = "/distribution"
+
+class Distribution:
+    def __call__ (self):
+        title = _("Web Applications Distribution")
+
+        # Page
+        page = Page.Page_Menu (title=title)
+        page += CTK.RawHTML ("<h1>%s</h1>" %(title))
+        page += Distro.Authors_List()
+
+        return page.Render()
+
+
+CTK.publish (r'^%s(\.html)?$'%(URL_BASE), Distribution)
+
+

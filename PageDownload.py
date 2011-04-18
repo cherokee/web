@@ -255,9 +255,9 @@ class Download_Linux:
         return content.Render().toStr()
 
 
-CTK.publish (r'^%s(\.html)?$'%(URL_BASE),    QuickStart)
-CTK.publish (r'^%s'  %(URL_MACOSX),  Download_MacOSX)
-CTK.publish (r'^%s/2'%(URL_MACOSX),  Download_MacOSX_2)
-CTK.publish (r'^%s'  %(URL_LINUX),   Download_Linux)
-CTK.publish (r'^%s'  %(URL_SOURCE),  Download_Source)
-CTK.publish (r'^%s'  %(URL_WINDOWS), Download_Windows)
+CTK.publish (r'^%s(\.html)?$'%(URL_BASE), QuickStart)
+CTK.publish (r'^%s'  %(URL_MACOSX),       Download_MacOSX)
+CTK.publish (r'^%s/2'%(URL_MACOSX),       Download_MacOSX_2)
+CTK.publish (r'^%s'  %(URL_LINUX),        Download_Linux)
+CTK.publish (r'^%s'  %(URL_SOURCE),       Download_Source)
+CTK.publish (r'^%s'  %(URL_WINDOWS),      Download_Windows)
