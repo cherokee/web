@@ -34,13 +34,64 @@ URL_BASE = "/doc"
 class Index (CTK.Box):
     def __init__ (self):
         CTK.Box.__init__ (self)
+
+        local_file = os.path.join (config.DOC_LOCAL, "index.txt")
+        lines = open(local_file,'r').readlines()
+
+        n = 0
+        while n < len(lines):
+            line = lines[n].strip()
+
+            if not line:
+                n += 1
+                continue
+            elif line.startswith("=="):
+                n += 1
+                continue
+            elif line.startswith("*"*10):
+                # *********************************
+                # link:basics.html[Getting started]: Cherokee basics
+                # *********************************
+                n += 1
+                line = lines[n].strip()
+
+                tmp = re.findall (r'link:(\S+)\[(.+)\](.*)$', line)
+                if tmp:
+                    self += CTK.RawHTML ('<h3><a href="%s">%s</a>%s</h3>' %(tmp[0][0], tmp[0][1], tmp[0][2]))
+                else:
+                    self += CTK.RawHTML ('<h3>%s</h3>' %(line))
+
+                n += 2
+                continue
+            elif line.startswith(". "):
+                #
+                # . link:dev_quickstart.html[Quickstart]: Where to start?.
+                # . link:dev_debug.html[Debugging]: Resources available to debug Cherokee.
+                #
+                l = CTK.List()
+                self += l
+
+                while True:
+                    tmp = re.findall (r'link:(\S+)\[(.+)\](.*)$', line)
+                    l += CTK.RawHTML ('<a href="%s">%s</a>%s' %(tmp[0][0], tmp[0][1], tmp[0][2]))
+                    n += 1
+
+                    if lines[n].startswith(". "):
+                        line = lines[n].strip()
+                        continue
+                    else:
+                        break
+            else:
+                n+= 1
+
+
         self += CTK.RawHTML ("index")
 
 
 class PageDoc:
     def __call__ (self):
         # Handle request
-        if CTK.request.url in ('/doc', '/doc/'):
+        if CTK.request.url in ('/doc', '/doc/', '/doc/index', '/doc/index.html'):
             request = "/doc/index.html"
             sidebar = False
         else:
