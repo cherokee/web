@@ -40,7 +40,7 @@ ul.list li { line-height: 1.5em; }
 #footer { width: 980px; margin: 0 auto; text-align: left; }
 #footer-inner { font-size: 90%; padding: 22px 30px 30px 90px; color: #3465a4; background: transparent url(../images/o.png) 15px 15px no-repeat; }
 #bar  { width: 980px; margin: 0 auto; height: 52px; }
-#sprint  { background: #eff5fd url(../images/sprint.png) top center no-repeat; height: 215px; }
+#sprint  { background: #eff5fd url(../images/sprint.png) top center no-repeat; height: 236px; }
 #mainmsg { padding: 20px 30px 30px 15px; margin-left: 360px; }
 #mainmsg h1 { color: #fff; font-size: 28px; font-weight: bold; text-shadow: #072e5e 0px 1px 0px; text-transform: uppercase; margin: 0; padding-bottom: 0px; font-family: "CA BND Web Bold", Verdana, Arial, Helvetica, sans-serif; }
 #mainmsg p { color: #072e5e; font-size: 18px; }
