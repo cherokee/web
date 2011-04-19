@@ -13,12 +13,16 @@ class MenuBar (CTK.Box):
         link = CTK.Link ("/", CTK.Image({'src': "/static/images/logo.png"}))
         self += CTK.Box ({'id': 'logo'}, link)
 
+        nav =  CTK.Box ({'id': 'nav'})
+
         l = CTK.List()
         l += CTK.Link ("/downloads.html",  CTK.RawHTML("Download"))
         l += CTK.Link ("/doc",             CTK.RawHTML("Documentation"))
         l += CTK.Link ("/community.html",  CTK.RawHTML("Community"))
         l += CTK.Link ("/Contribute.html", CTK.RawHTML("Contribute"))
-        self += l
+        nav += l
+
+        self += nav
 
 class Footer (CTK.Box):
     ALVARO_URL = "http://www.linkedin.com/profile/view?id=19919180"

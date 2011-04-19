@@ -49,6 +49,8 @@ class Latest_Tweets_Widget (CTK.Box):
     def __init__ (self, num=6):
         CTK.Box.__init__ (self, {'id': 'latest_tweets'})
 
+        self += CTK.RawHTML ('<div class="sidetitle">Latest Tweets...</div>')
+
         # Query
         data = feedparser.parse (TWITTER_URL)
         if data['bozo'] == 1:

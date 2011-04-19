@@ -85,10 +85,17 @@ class Home:
     def __call__ (self):
         page = Page.Page_Menu()
         page += Top_Banner()
-        page += Highlights()
-        page += Twitter.Latest_Tweets()
-        page += Commits.Latest_SVN_Commits()
-        page += MailingList.Latest_Mailing_List()
+
+        main_box  = CTK.Box ({'id': 'index_main'})
+        main_box += Highlights()
+        page     += main_box
+
+        side_box  = CTK.Box ({'id': 'index_sidebar'})
+        side_box += Twitter.Latest_Tweets()
+        side_box += Commits.Latest_SVN_Commits()
+        side_box += MailingList.Latest_Mailing_List()
+        page     += side_box
+    
         return page.Render()
 
 
