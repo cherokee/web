@@ -51,7 +51,7 @@ class Page_Base (CTK.Page):
         if title:
             full_title = '%s: %s' %(_("Cherokee Project"), title)
         else:
-            full_title = _("Cherokee Market")
+            full_title = _("Cherokee Web Server")
 
         template['title'] = full_title
         if body_id:

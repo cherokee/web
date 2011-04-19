@@ -29,5 +29,6 @@ import PageIndex
 import PageDownload
 import PageSVN
 import PageDistro
+import PageDoc
 
 CTK.run (port=8090)
