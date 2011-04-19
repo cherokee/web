@@ -22,7 +22,7 @@ body { background: #eff5fd url(../images/bar.png) repeat-x;  font-family: Helvet
 a { color: #3465a4; }
 a:hover { color: #c00; text-decoration: underline; }
 h1, h2, h3 { font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: normal; margin: 0 0 8px 0; padding:0; }
-h1 { color: #c00; font: 50px/50px Verdana, Arial, Helvetica, sans-serif; }
+h1 { color: #c00; font: 40px/40px Verdana, Arial, Helvetica, sans-serif; }
 h1 a { color: #c00; text-decoration: none; }
 h1 a:hover { color: #c00; text-decoration: underline; }
 h2 { color: #174783; font-size: 150%; font: 24px/24px Verdana, Arial, Helvetica, sans-serif; padding-bottom: 8px; margin: 15px 0; border-bottom: 1px solid #def; }
@@ -41,8 +41,8 @@ ul.list li { line-height: 1.5em; }
 #footer-inner { font-size: 90%; padding: 22px 30px 30px 90px; color: #3465a4; background: transparent url(../images/o.png) 15px 15px no-repeat; }
 #bar  { width: 980px; margin: 0 auto; height: 52px; }
 #sprint  { background: #eff5fd url(../images/sprint.png) top center no-repeat; height: 215px; }
-#mainmsg { padding: 12px 30px 30px 15px; margin-left: 360px; }
-#mainmsg h1 { color: #fff; font-size: 30px; font-weight: bold; text-shadow: #072e5e 0px 1px 0px; text-transform: uppercase; margin: 0; padding-bottom: 0px; font-family: "CA BND Web Bold", Verdana, Arial, Helvetica, sans-serif; }
+#mainmsg { padding: 20px 30px 30px 15px; margin-left: 360px; }
+#mainmsg h1 { color: #fff; font-size: 28px; font-weight: bold; text-shadow: #072e5e 0px 1px 0px; text-transform: uppercase; margin: 0; padding-bottom: 0px; font-family: "CA BND Web Bold", Verdana, Arial, Helvetica, sans-serif; }
 #mainmsg p { color: #072e5e; font-size: 18px; }
 #nav { padding: 4px 0px 4px 0px; float: right; height: 22px; margin-top: 12px; }
 #nav ul { margin:0 0 0 12px; padding:0;font-family: Helvetica, Arial, sans-serif; font-size: 15px; padding-left: 8px;}
@@ -57,7 +57,7 @@ ul.list li { line-height: 1.5em; }
 #index_main {
  padding: 30px;
  float: left;
- width: 600px;
+ width: 620px;
 }
 
 #index_sidebar {
@@ -68,10 +68,20 @@ ul.list li { line-height: 1.5em; }
 }
 
 .sidetitle {
- background: #cde;
- width: 280px;
+ background: transparent url(../images/bg-sbt.png) no-repeat;
+ height: 34px;
+ width: 281px;
  font-size: 120%;
- padding: 5px;
+ padding-top: 5px;
+ padding-left: 15px;
+ margin-left: -4px;
+ color: #fff;
+ font-weight: bold;
+}
+
+.sidecontent {
+ padding-left: 10px;
+ margin-bottom: 30px;
 }
 
 

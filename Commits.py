@@ -67,6 +67,11 @@ class Latest_SVN_Commits_Widget (CTK.Box):
     def __init__ (self, num=6):
         CTK.Box.__init__ (self, {'id': 'latest_svn_commit'})
 
+        self += CTK.Box({'class': 'sidetitle'}, CTK.RawHTML('Latest Commits'))
+
+        content_box = CTK.Box({'class': 'sidecontent'})
+
+
         for commit in get_commit_list (num):
             rev     = commit[0][0]
             user    = commit[0][1]
@@ -78,9 +83,11 @@ class Latest_SVN_Commits_Widget (CTK.Box):
             if len(comment) > COMMENT_MAX_SIZE:
                 comment = comment[:COMMENT_MAX_SIZE - 3] + "..."
 
-            self += CTK.LinkWindow (url, CTK.RawHTML(rev))
-            self += CTK.Box ({'class': 'comment'}, CTK.RawHTML (comment))
-            self += CTK.Box ({'class': 'details'}, CTK.RawHTML ('%(user)s | <b>%(date)s</b>'%(locals())))
+            content_box += CTK.LinkWindow (url, CTK.RawHTML(rev))
+            content_box += CTK.Box ({'class': 'comment'}, CTK.RawHTML (comment))
+            content_box += CTK.Box ({'class': 'details'}, CTK.RawHTML ('%(user)s | <b>%(date)s</b>'%(locals())))
+
+        self += content_box
 
 
 #

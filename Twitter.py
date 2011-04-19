@@ -49,7 +49,9 @@ class Latest_Tweets_Widget (CTK.Box):
     def __init__ (self, num=6):
         CTK.Box.__init__ (self, {'id': 'latest_tweets'})
 
-        self += CTK.RawHTML ('<div class="sidetitle">Latest Tweets...</div>')
+        self += CTK.Box({'class': 'sidetitle'}, CTK.RawHTML('Latest Tweets'))
+
+        content_box = CTK.Box({'class': 'sidecontent'})
 
         # Query
         data = feedparser.parse (TWITTER_URL)
@@ -74,8 +76,10 @@ class Latest_Tweets_Widget (CTK.Box):
             date_box = CTK.Box({'class': 'tweet-date'})
             date_box += CTK.LinkWindow (link, CTK.RawHTML(date))
 
-            self += CTK.RawHTML (tweet)
-            self += date_box
+            content_box += CTK.RawHTML (tweet)
+            content_box += date_box
+        
+        self += content_box
 
 
 #

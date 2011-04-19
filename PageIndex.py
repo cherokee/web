@@ -95,6 +95,8 @@ class Home:
         side_box += Commits.Latest_SVN_Commits()
         side_box += MailingList.Latest_Mailing_List()
         page     += side_box
+
+        page     += CTK.Box({'class': 'clr'})
     
         return page.Render()
 

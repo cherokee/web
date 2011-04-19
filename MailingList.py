@@ -98,6 +98,11 @@ class Latest_Mailing_List_Widget (CTK.Box):
     def __init__ (self, limit=6):
         CTK.Box.__init__ (self, {'id': 'mailing_list_widget'})
 
+        self += CTK.Box({'class': 'sidetitle'}, CTK.RawHTML('Mailing List'))
+
+        content_box = CTK.Box({'class': 'sidecontent'})
+
+
         ret = get_mailing_list_subjects()
         subjects, subject_list = ret
 
@@ -108,8 +113,10 @@ class Latest_Mailing_List_Widget (CTK.Box):
             box = CTK.Box({'class': 'ml-entry'})
             box += CTK.RawHTML ('%s | %s messages | <b>%s</b>'%(authors, subject['hits'], subject['date']))
 
-            self += CTK.LinkWindow (subject['link'], CTK.RawHTML(s))
-            self += box
+            content_box += CTK.LinkWindow (subject['link'], CTK.RawHTML(s))
+            content_box += box
+
+        self += content_box
 
 
 #
