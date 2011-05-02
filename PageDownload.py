@@ -94,36 +94,6 @@ class OS_Combo (CTK.Box):
         self += self.combo
 
 
-class QuickStart:
-    def __call__ (self):
-        title = _("Quickstart Guide")
-
-        # Install Cherokee
-        os_combo = OS_Combo()
-        druid    = CTK.Druid (CTK.RefreshableURL ('%s/%s'%(URL_BASE, os_combo.os_selected)))
-
-        box  = CTK.Box ({'id': 'platform-box'})
-        box += os_combo
-
-        step1  = CTK.Box({'id': 'qs-step-1', 'class': 'qs-step'})
-        step1 += box
-        step1 += CTK.RawHTML ('<h2>%s</h2>' %(_("Install Cherokee")))
-        step1 += CTK.RawHTML ('<p>%s</p>' %(_("Cherokee Market is available for Cherokee 1.2.0 or greater.")))
-        step1 += druid
-        os_combo.bind ('change', druid.JS_to_goto('"%s/"+$("#%s").val()' %(URL_BASE, os_combo.combo.id)))
-
-        # Page
-        page = Page.Page_Menu (title=title)
-        page += CTK.RawHTML ("<h1>%s</h1>" %(title))
-        page  += step1
-
-        # Mirros
-        mirrors = Mirror_Sites.Mirrors()
-        page += mirrors
-
-        return page.Render()
-
-
 class Download_MacOSX:
     def __call__ (self):
         # Find the DMG file
@@ -258,6 +228,49 @@ class Download_Linux:
         box += details
         content += box
         return content.Render().toStr()
+
+class Development_Version (CTK.Box):
+    def __init__ (self):
+        CTK.Box.__init__ (self, {'class': 'download-svn-box'})
+        self += CTK.RawHTML ('<h2>%s</h2>' %("Development Snapshots"))
+        self += CTK.RawHTML ("You can also retrieve the current development sources ")
+        self += CTK.Link ("/svn.html", CTK.RawHTML ("using SVN"))
+        self += CTK.RawHTML (" or downloading the ")
+        self += CTK.Link ("/download/trunk/cherokee-latest-svn.tar.gz", CTK.RawHTML ("latest SVN snapshot"))
+        self += CTK.RawHTML (".")
+
+
+class QuickStart:
+    def __call__ (self):
+        title = _("Quickstart Guide")
+
+        # Install Cherokee
+        os_combo = OS_Combo()
+        druid    = CTK.Druid (CTK.RefreshableURL ('%s/%s'%(URL_BASE, os_combo.os_selected)))
+
+        box  = CTK.Box ({'id': 'platform-box'})
+        box += os_combo
+
+        step1  = CTK.Box({'id': 'qs-step-1', 'class': 'qs-step'})
+        step1 += box
+        step1 += CTK.RawHTML ('<h2>%s</h2>' %(_("Install Cherokee")))
+        step1 += CTK.RawHTML ('<p>%s</p>' %(_("Cherokee Market is available for Cherokee 1.2.0 or greater.")))
+        step1 += druid
+        os_combo.bind ('change', druid.JS_to_goto('"%s/"+$("#%s").val()' %(URL_BASE, os_combo.combo.id)))
+
+        # Page
+        page = Page.Page_Menu_Side (title=title)
+        page += CTK.RawHTML ("<h1>%s</h1>" %(title))
+        page  += step1
+
+        # Development version
+        page.sidebar += Development_Version()
+
+        # Mirros
+        mirrors = Mirror_Sites.Mirrors()
+        page.sidebar += mirrors
+
+        return page.Render()
 
 
 CTK.publish (r'^%s(\.html)?$'%(URL_BASE), QuickStart)
