@@ -129,4 +129,15 @@ class PageDoc:
         return page.Render()
 
 
-CTK.publish (URL_BASE, PageDoc)
+class PageMedia:
+    def __call__ (self):
+        tmp = re.findall (r'^%s(/media/.*)$'%(URL_BASE), CTK.request.url)
+        if not tmp:
+            return HTTP_Error (404)
+
+        local_file = config.DOC_LOCAL + tmp[0]
+        return CTK.HTTP_XSendfile (local_file)
+
+
+CTK.publish (URL_BASE,              PageDoc)
+CTK.publish ('^%s/media'%(URL_BASE), PageMedia)

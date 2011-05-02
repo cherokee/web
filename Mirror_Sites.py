@@ -41,7 +41,7 @@ class Mirrors_Widget (CTK.Box):
             CTK.Box.__init__ (self, {'class': 'mirror-entry'})
             assert (type(mirror) == dict)
 
-            self += CTK.Image({'src': "/static/images/flags/%s.png" %(mirror['code'])})
+            self += CTK.Image({'src': "/static/images/flags/%s.png" %(mirror['code']), 'title': mirror['code']})
             self += CTK.LinkWindow (mirror['http'], CTK.RawHTML (mirror['http']))
 
     def __init__ (self):
