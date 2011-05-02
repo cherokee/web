@@ -28,6 +28,7 @@ import os
 import CTK
 import Page
 import Downloads
+import Mirror_Sites
 
 MACOSX_TITLE  = N_("Download Cherokee for MacOS X")
 LINUX_TITLE   = N_("Download Cherokee for Linux")
@@ -115,6 +116,10 @@ class QuickStart:
         page = Page.Page_Menu (title=title)
         page += CTK.RawHTML ("<h1>%s</h1>" %(title))
         page  += step1
+
+        # Mirros
+        mirrors = Mirror_Sites.Mirrors()
+        page += mirrors
 
         return page.Render()
 

@@ -78,7 +78,7 @@ class Latest_Tweets_Widget (CTK.Box):
 
             content_box += CTK.RawHTML (tweet)
             content_box += date_box
-        
+
         self += content_box
 
 

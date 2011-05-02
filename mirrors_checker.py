@@ -1,13 +1,13 @@
 #!/usr/bin/env python
+# -*- Mode: python; coding: utf-8 -*-
 
-# -*- coding: utf-8 -*-
 #
-# Cherokee-admin
+# Cherokee Web Site
 #
 # Authors:
 #      Alvaro Lopez Ortega <alvaro@alobbs.com>
 #
-# Copyright (C) 2001-2010 Alvaro Lopez Ortega
+# Copyright (C) 2001-2011 Alvaro Lopez Ortega
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of version 2 of the GNU General Public
@@ -27,7 +27,6 @@
 import re
 import sys
 import time
-#import urllib2
 import cPickle
 import pycurl
 import cStringIO
@@ -77,6 +76,7 @@ def check_mirror (mirror):
     # Report version
     mirror['up_to_date'] = True
 
+
 def check_mirrors():
     global main_site
 
@@ -104,6 +104,7 @@ def check_mirrors():
     # Save
     cPickle.dump (results, open("mirrors.pickle", 'w+'))
     os.system ("ls -l mirrors.pickle")
+
 
 if __name__ == '__main__':
     check_mirrors()
