@@ -270,7 +270,7 @@ class QuickStart:
         mirrors = Mirror_Sites.Mirrors()
         page.sidebar += mirrors
 
-        return page.Render()
+        return CTK.HTTP_Cacheable (60, body=page.Render())
 
 
 CTK.publish (r'^%s(\.html)?$'%(URL_BASE), QuickStart)

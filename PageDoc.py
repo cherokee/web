@@ -126,7 +126,7 @@ class PageDoc:
             page.sidebar += Index()
 
         page += CTK.RawHTML (body)
-        return page.Render()
+        return CTK.HTTP_Cacheable (60, body=page.Render())
 
 
 class PageMedia:

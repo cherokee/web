@@ -94,7 +94,7 @@ class Distribution:
         page += CTK.RawHTML ("<p>%s</p>" %(MAINTAINERS_P1))
         page += Distro.Authors_List()
 
-        return page.Render()
+        return CTK.HTTP_Cacheable (60, body=page.Render())
 
 
 CTK.publish (r'^%s(\.html)?$'%(URL_BASE), Distribution)
