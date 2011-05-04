@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- Mode: python; coding: utf-8 -*-
 
 #
@@ -24,12 +23,28 @@
 # 02110-1301, USA.
 #
 
+import os
+import re
 import CTK
-import PageIndex
-import PageDownload
-import PageSVN
-import PageDistro
-import PageDoc
-import PageCommunity
+import Page
+import config
+import ProudList
 
-CTK.run (port=8090)
+URL_BASE = "/community"
+
+
+class PageCommunity:
+    def __call__ (self):
+        title = "Community"
+
+        page = Page.Page_Menu_Side (title=title)
+        page += CTK.RawHTML ("<h1>%s</h1>"%(title))
+
+        # Proud Cherokee Users List
+        page.sidebar += ProudList.DomainList()
+
+        return CTK.HTTP_Cacheable (60, body=page.Render())
+
+
+
+CTK.publish (URL_BASE, PageCommunity)
