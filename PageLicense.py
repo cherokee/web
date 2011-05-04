@@ -363,6 +363,7 @@ class PageLicense:
 
         page += CTK.RawHTML ('<p>%s</p>' %(LICENSE_P1))
         page += CTK.RawHTML ('<p>%s</p>' %(LICENSE_P2))
+        page += CTK.Image ({'src': '/static/images/osi-certified-120x100.gif'})
         page += CTK.Box ({'class': 'gpl-text'}, CTK.RawHTML (GPL_v2))
 
         return CTK.HTTP_Cacheable (60, body=page.Render())
