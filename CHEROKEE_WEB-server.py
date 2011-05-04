@@ -32,6 +32,6 @@ import PageDistro
 import PageDoc
 import PageCommunity
 import PageForum
-
+import PageContribute
 
 CTK.run (port=8090)
