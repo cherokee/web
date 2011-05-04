@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- Mode: python; coding: utf-8 -*-
 
 #
@@ -24,14 +23,29 @@
 # 02110-1301, USA.
 #
 
+import os
+import re
 import CTK
-import PageIndex
-import PageDownload
-import PageSVN
-import PageDistro
-import PageDoc
-import PageCommunity
-import PageForum
+import Page
+import config
+
+URL_BASE = "/forums"
+
+FORUM_EMBEDDABLE_HTML = """
+<a id="nabblelink" href="http://cherokee-web-server-general.1049476.n5.nabble.com/">Cherokee Web Server - General</a>
+<script src="http://cherokee-web-server-general.1049476.n5.nabble.com/embed/f4369600"></script>
+"""
+
+class PageForum:
+    def __call__ (self):
+        title = "Forums"
+
+        page = Page.Page_Menu_Side (title=title)
+        page += CTK.RawHTML ("<h1>%s</h1>"%(title))
+        page += CTK.RawHTML (FORUM_EMBEDDABLE_HTML)
+
+        return CTK.HTTP_Cacheable (60, body=page.Render())
 
 
-CTK.run (port=8090)
+CTK.publish (URL_BASE, PageForum)
+

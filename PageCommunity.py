@@ -32,6 +32,10 @@ import ProudList
 
 URL_BASE = "/community"
 
+MAILING_P1 = 'The primary discussion forum for Cherokee community members is the <a href="http://lists.octality.com/">Cherokee Project\'s mailing lists</a>.'
+MAILING_P2 = 'If you prefer a forums interface, you can interact with other Cherokee users and developers through the <a href="/forums.html">Forums interface</a> to our mailing lists.'
+IRC_P1     = 'The Cherokee developers, as well as many members of the Cherokee user community, can be found online in the <a href="irc://irc.freenode.net/cherokee">#cherokee</a> IRC channel on the FreeNode IRC Network (servers: irc.freenode.net).'
+SOCIAL_P1  = 'The Cherokee project has also presence in the following social networks. Please, do not hesitate to join us!'
 
 class PageCommunity:
     def __call__ (self):
@@ -42,6 +46,22 @@ class PageCommunity:
 
         # Proud Cherokee Users List
         page.sidebar += ProudList.DomainList()
+
+        # Content
+        page += CTK.RawHTML ('<h2>Mailing Lists / Forums</h2>')
+        page += CTK.RawHTML ('<p>%s</p>' %(MAILING_P1))
+        page += CTK.RawHTML ('<p>%s</p>' %(MAILING_P2))
+
+        page += CTK.RawHTML ('<h2>IRC / Chat</h2>')
+        page += CTK.RawHTML ('<p>%s</p>' %(IRC_P1))
+
+        page += CTK.RawHTML ('<h2>Social Networks</h2>')
+        l = CTK.List()
+        l += CTK.LinkWindow ("http://www.twitter.com/webserver", CTK.RawHTML("Twitter"))
+        l += CTK.LinkWindow ("http://www.linkedin.com/groups/Cherokee-Web-Server-1819726", CTK.RawHTML("LinkedIn"))
+        l += CTK.LinkWindow ("http://www.facebook.com/cherokee.project", CTK.RawHTML("Facebook"))
+        page += CTK.RawHTML ('<p>%s</p>' %(SOCIAL_P1))
+        page += l
 
         return CTK.HTTP_Cacheable (60, body=page.Render())
 
