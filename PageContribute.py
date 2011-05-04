@@ -29,7 +29,6 @@ import CTK
 import Page
 import config
 import Ohloh
-import ProudList
 
 URL_BASE = "/contribute"
 
@@ -43,7 +42,7 @@ MRKT_P1 = 'Help us spread the word about how Cherokee is helping to evolve the W
 MRKT_P2 = 'Attend FOSS events as part of the Cherokee community. Publicize Cherokee  in media, at fairs and other events, etc. Take part in creating content and coordinating activities for special marketing initiatives.'
 
 DEV_P1 = "Before we can incorporate significant contributions, certain legal requirements must be met."
-DEV_P2 = "We believe it is important to continue distributing Cherokee under a Free Software license and a unified copyright, so both the project and its users are as safe against legal threats."
+DEV_P2 = 'We believe it is important to continue distributing Cherokee under a <a href="/license.html">Free Software license</a> and a unified copyright, so both the project and its users are as safe against legal threats.'
 DEV_P3 = "Everybody who contributes code to Cherokee is going to be asked to sign a Contribute Agreement. The main to reasons for requiring contributors to sign this document are: First, it protects the project against any legal issue as to the origins and ownership of any particular piece of code contributed."
 DEV_P4 = "Second, the Contributor Agreement also ensures that once you have provided a contribution, you cannot try to withdraw permission for its use at a later date. People and companies can therefore use Cherokee, confident that they will not be asked to stop using pieces of the code at a later date."
 DEV_P5 = "Please, follow the following steps to submit us your Contributor Agreement:"
