@@ -66,5 +66,4 @@ class PageCommunity:
         return CTK.HTTP_Cacheable (60, body=page.Render())
 
 
-
 CTK.publish (URL_BASE, PageCommunity)

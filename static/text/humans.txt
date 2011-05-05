@@ -1,0 +1,32 @@
+As it couldn't be otherwise, this website is based on technology
+developed by the Cherokee Project.
+
+  - Web Infrastructure Stack:
+      * Web Server
+	 * Load Balancing facilities
+	 * Caching Mechanism
+
+  - CTK (Cherokee ToolKit)
+
+
+/* TEAM */
+	Chef:       Alvaro Lopez Ortega
+	Contact:    alvaro@octality.com
+	Twitter:    @alobbs
+	LinkedIn:   http://linkedin.com/in/alobbs
+	From:       Madrid, Spain
+
+	Web design: Jonathan Hernandez
+	Contact:    jonathan@octality.com
+	Twitter:    @ion
+	LinkedIn:   http://linkedin.com/in/ionmx
+	From:       Chihuahua, Mexico
+
+/* SITE */
+	Language:       English
+	Web Technology: Cherokee and CTK
+
+	Twitter:  @webserver
+	Facebook: http://www.facebook.com/cherokee.project
+	LinkedIn: http://www.linkedin.com/groups/Cherokee-Web-Server-1819726
+	Source:   http://svn.cherokee-project.com/
