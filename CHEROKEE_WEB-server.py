@@ -25,6 +25,7 @@
 #
 
 import os
+import sys
 
 import CTK
 import PageIndex
@@ -38,4 +39,9 @@ import PageContribute
 import PageLicense
 import PageMarketing
 
-CTK.run (port = int(os.getenv('SCGI_PORT', '8090')))
+if len(sys.argv) > 1:
+    port = sys.argv[1]
+else:
+    port = os.getenv('SCGI_PORT', '8090')
+
+CTK.run (port = int(port))
