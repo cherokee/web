@@ -24,6 +24,8 @@
 # 02110-1301, USA.
 #
 
+import os
+
 import CTK
 import PageIndex
 import PageDownload
@@ -36,4 +38,4 @@ import PageContribute
 import PageLicense
 import PageMarketing
 
-CTK.run (port=8090)
+CTK.run (port = int(os.getenv('SCGI_PORT', '8090')))
