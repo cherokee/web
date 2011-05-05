@@ -52,7 +52,8 @@ class Mirrors_Widget (CTK.Box):
             self += CTK.RawHTML ("<p>The <i>mirrors.pickle</i> file was not found. Please, run 'mirrors_checker.py' to create it.</p>")
             return
 
-        mirrors = cPickle.load (open ("mirrors.pickle", 'r'))
+        fullpath = os.path.join (os.path.dirname (os.path.realpath (__file__)), "mirrors.pickle")
+        mirrors = cPickle.load (open (fullpath, 'r'))
 
         # Mirror List
         l_ok = CTK.List()
