@@ -24,6 +24,7 @@
 # 02110-1301, USA.
 #
 
+import os
 import re
 import sys
 import time
