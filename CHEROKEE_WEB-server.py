@@ -34,5 +34,6 @@ import PageCommunity
 import PageForum
 import PageContribute
 import PageLicense
+import PageMarketing
 
 CTK.run (port=8090)
