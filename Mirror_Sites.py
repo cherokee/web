@@ -47,12 +47,12 @@ class Mirrors_Widget (CTK.Box):
     def __init__ (self):
         CTK.Box.__init__ (self, {'class': 'mirrors-list'})
 
-        if not os.path.exists ("mirrors.pickle"):
+        fullpath = os.path.join (os.path.dirname (os.path.realpath (__file__)), "mirrors.pickle")
+        if not os.path.exists (fullpath):
             self += CTK.RawHTML ('<h1>ERROR: Mirrors status file not found</h1>')
             self += CTK.RawHTML ("<p>The <i>mirrors.pickle</i> file was not found. Please, run 'mirrors_checker.py' to create it.</p>")
             return
 
-        fullpath = os.path.join (os.path.dirname (os.path.realpath (__file__)), "mirrors.pickle")
         mirrors = cPickle.load (open (fullpath, 'r'))
 
         # Mirror List
@@ -70,7 +70,7 @@ class Mirrors_Widget (CTK.Box):
         self += l_no
 
         # Last Checked
-        mtime = os.stat ("mirrors.pickle").st_mtime
+        mtime = os.stat (fullpath).st_mtime
         delta = int(time.time() - mtime)
 
         days    = delta / (60 * 60 * 24)
