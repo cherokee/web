@@ -51,6 +51,9 @@ DEV_L1 = 'It is available as <a href="/static/doc/Cherokee_Contribution_Agreemen
 DEV_L2 = 'Print out the document and sign it.'
 DEV_L3 = 'Scan and email the document to alvaro@alobbs.com'
 
+BUGS_P1 = 'Help us hunt down bugs in Cherokee. We encourage developers to use our software and help us to improve it.'
+BUGS_P2 = 'Please, do not hesitate to <a href="http://bugs.cherokee-project.com/new" target="_blank">file a bug report</a> if you found any problem in Cherokee. You can also take part in the triage and confirmation of bugs having been reported on the <a href="http://bugs.cherokee-project.com/" target="_blank">Cherokee bug tracker</a>.'
+
 
 class PageContribute:
     class ListEntry (CTK.Box):
@@ -97,6 +100,8 @@ class PageContribute:
 
         # Bug Reports
         page += CTK.RawHTML ('<h2>Report of Issues</h2>')
+        page += CTK.RawHTML ('<p>%s</p>' %(BUGS_P1))
+        page += CTK.RawHTML ('<p>%s</p>' %(BUGS_P2))
 
 
         return CTK.HTTP_Cacheable (60, body=page.Render())
