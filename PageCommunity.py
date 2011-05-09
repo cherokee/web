@@ -45,6 +45,8 @@ class PageCommunity:
         page += CTK.RawHTML ("<h1>%s</h1>"%(title))
 
         # Proud Cherokee Users List
+        page.sidebar += CTK.RawHTML ('<h3>Proud Cherokee Users</h3>')
+        page.sidebar += ProudList.Add_New_Domain()
         page.sidebar += ProudList.DomainList()
 
         # Content

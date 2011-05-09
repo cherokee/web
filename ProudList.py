@@ -30,9 +30,12 @@ import time
 import Page
 import config
 import cPickle
+import xmlrpclib
+
+URL_NEW_SUBMIT = '/proud/apply'
 
 CACHE_EXPIRATION = 15 * 60 # 10mins
-
+URL_OPEN         = 'http://www.octality.com/api/v2/open/proud'
 
 DOMAIN_CLICK_JS = """
 $(".domain").click (function (event) {
@@ -65,7 +68,6 @@ class DomainList_Widget (CTK.Box):
         for domain in domains_clean:
             l += CTK.Box ({'class': 'domain domain-PR%s'%(domain['page_rank'])}, CTK.RawHTML(domain['domain']))
 
-        self += CTK.RawHTML ("<h3>Proud Cherokee Users</h3>")
         self += l
         self += CTK.RawHTML (js = DOMAIN_CLICK_JS)
 
@@ -85,3 +87,61 @@ def DomainList():
         latest_widget_expiration = time.time() + CACHE_EXPIRATION
 
     return latest_widget
+
+
+class Add_New_Domain (CTK.Box):
+    P1 = """Submit the form and if your site is running Cherokee it
+    will be listed. Sites are sorted by popularity and, among sites in
+    the same league, are listed in alphabetical order."""
+
+    REPORT_OK_JS = """
+    $('#%s').html ($('#%s').val() + " added succesfully.");
+    """
+
+    REPORT_FAIL_JS = """
+    $('#%s').html ("Couldn't add " + $('#%s').val());
+    """
+
+    class Apply:
+        def __call__ (self):
+            domain = CTK.post.get_val('new_domain')
+
+            xmlrpc = xmlrpclib.ServerProxy (URL_OPEN)
+            try:
+                reply = xmlrpc.add_domain (domain)
+            except xmlrpclib.Fault, err:
+                return {'ret':'error', 'errors': {'new_domain': err.faultString}}
+            except Exception, e:
+                return {'ret':'error', 'errors': {'new_domain': str(e)}}
+
+            return CTK.cfg_reply_ajax_ok()
+
+    def __init__ (self):
+        CTK.Box.__init__ (self, {'class': 'add_new_domain'})
+
+        # Dialog
+        field  = CTK.TextField ({'name': 'new_domain', 'class': 'noauto'})
+        add    = CTK.SubmitterButton ("Add")
+        report = CTK.Box()
+
+        box = CTK.Box()
+        box += field
+        box += add
+        box += report
+
+        submit = CTK.Submitter (URL_NEW_SUBMIT)
+        submit += box
+        submit.bind ('submit_success',
+                     self.REPORT_OK_JS%(report.id, field.id) +
+                     field.JS_to_clean())
+        submit.bind ('submit_fail',
+                     self.REPORT_FAIL_JS%(report.id, field.id))
+
+        coll = CTK.CollapsibleEasy (('Add your domain…','Add your domain…'))
+        coll += CTK.RawHTML ('<p>%s</p>' %(self.P1))
+        coll += submit
+
+        self += coll
+
+
+CTK.publish ('^%s$'%(URL_NEW_SUBMIT), Add_New_Domain.Apply, method="POST")
