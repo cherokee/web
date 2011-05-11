@@ -97,8 +97,8 @@ class Home:
         page     += side_box
 
         page     += CTK.Box({'class': 'clr'})
-    
-        return page.Render()
+
+        return CTK.HTTP_Cacheable (10, body=page.Render())
 
 
 CTK.publish ('^/(index)?$', Home)

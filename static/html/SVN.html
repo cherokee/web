@@ -1,0 +1,28 @@
+<h1>Subversion repository</h1>
+<p>The Cherokee source code is available via SVN. Anyone can check out the sources via SVN, but only certain people have the ability to check in.</p>
+<p>Briefly, SVN is a system tool used to store and maintain files and a history of their changes over time. The Cherokee source code and related files are kept on a SVN server at cherokee-project.com. More on SVN at <a href="http://subversion.tigris.org/">subversion.tigris.org</a></p>
+
+<h2>Browsing the sources</h2>
+<p>Though SVN repositories are most commonly accessed using a special piece of software called a <a href="http://subversion.tigris.org">SVN client</a>, we also provide a web-based interface to view SVN repositories. Browsing the SVN tree gives you a great view into the current status of this project's code. You may also view the complete histories of any file in the repository.</p>
+<p>If all you need is to browse the sources, you can go to <a href="http://svn.cherokee-project.com/"> http://svn.cherokee-project.com/</a></p>
+
+<h2>Checking out the sources</h2>
+<p>To list the available modules, type:</p>
+<blockquote><pre class="shell">svn list svn://svn.cherokee-project.com/</pre></blockquote>
+<p>To check out the sources for the first time from the repository, use this command:</p>
+<blockquote><pre class="shell">svn co svn://svn.cherokee-project.com/cherokee/trunk cherokee</pre></blockquote>
+<h2>Updating the sources</h2>
+<p>To update your sources every day, you use this command:</p>
+<blockquote><pre class="shell">svn up cherokee</pre></blockquote>
+
+<h2>Ignoring directories or files</h2>
+<p>Subversion stores ignored files per directory. To edit the ignored files of the directory you are currently in, do</p>
+<blockquote><pre class="shell">svn propedit svn:ignore .</pre></blockquote>
+<p>that will launch your editor, write there the names of the files you want to ignore, one file per line. Once you are done, do a commit so the ignored list file gets updated on the server.</p>
+<p>You can also list the properties:</p>
+<blockquote><pre class="shell">svn proplist .</pre></blockquote>
+
+<h2>Write Access</h2>
+<p>If you have write access in the Cherokee SVN repository I assume you know how to use it properly. If not, <a href="http://svnbook.red-bean.com/" target="_self">read this book</a>.</p>
+<h2>Subversion Commits Mailing List</h2>
+<p>We also have a mailing list set up that will notify you when new commits are made. Join cherokee-commits@cherokee-project.com by entering your email address at the <a href="http://www.cherokee-project.com/cgi-bin/mailman/listinfo/cherokee-commits">subscription page</a>. Then you'll know when to update.</p>
