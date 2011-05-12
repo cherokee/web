@@ -70,6 +70,10 @@ class Page_Menu (Page_Base):
         # Add MenuBar
         Page_Base.__iadd__ (self, MenuBar())
 
+        # Add banner area
+        self.banner = CTK.Box({'id': 'banner'})
+        Page_Base.__iadd__ (self, self.banner)
+
         # Main Container (tricky)
         self.container = CTK.Box ({'id': 'container'})
         Page_Base.__iadd__ (self, self.container)

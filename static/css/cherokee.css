@@ -18,7 +18,7 @@ ul {list-style: none;}
 }
 
 html, body { height: 100%; }
-body { background: #eff5fd url(../images/bar.png) repeat-x;  font-family: Helvetica, Arial, Tahoma, sans-serif; font-size: 14px; text-align: center; color: #222; }
+body { background: #fff url(../images/bar.png) repeat-x;  font-family: Helvetica, Arial, Tahoma, sans-serif; font-size: 14px; text-align: center; color: #222; }
 a { color: #3465a4; }
 a:hover { color: #c00; text-decoration: underline; }
 h1, h2, h3 { font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Arial, Helvetica, sans-serif; font-weight: normal; margin: 0 0 8px 0; padding:0; }
@@ -36,14 +36,15 @@ p { margin-bottom: 1em; line-height: 1.5em; }
 .p33 { width: 33%; float: left; }
 ul.list { list-style-type: disc; padding-left: 2em; margin-bottom: 1em; }
 ul.list li { line-height: 1.5em; }
-#container { background: #fff; width: 980px; margin: 15px auto; text-align: left; min-height: 100%; border: 1px solid #cde; }
+#container { background: #fff; width: 980px; margin: 0 auto; text-align: left; min-height: 100%;  }
+
 #footer { width: 980px; margin: 0 auto; text-align: left; }
 #footer-inner { font-size: 90%; padding: 22px 30px 30px 90px; color: #3465a4; background: transparent url(../images/o.png) 15px 15px no-repeat; }
 #bar  { width: 980px; margin: 0 auto; height: 52px; }
-#sprint  { background: #eff5fd url(../images/sprint.png) top center no-repeat; height: 236px; }
-#mainmsg { padding: 20px 30px 30px 15px; margin-left: 360px; }
-#mainmsg h1 { color: #fff; font-size: 28px; font-weight: bold; text-shadow: #072e5e 0px 1px 0px; text-transform: uppercase; margin: 0; padding-bottom: 0px; font-family: "CA BND Web Bold", Verdana, Arial, Helvetica, sans-serif; }
-#mainmsg p { color: #072e5e; font-size: 18px; }
+#sprint  { background: #eff5fd url(../images/sprint.png) top center no-repeat; height: 211px; text-align: left;}
+#mainmsg { margin: 0 auto; height: 211px; width: 980px; }
+#mainmsg h1 { color: #fff; font-size: 28px; font-weight: bold; text-shadow: #072e5e 0px 1px 0px; text-transform: uppercase; margin-left: 460px; padding-top: 30px; padding-bottom: 0px; font-family: "CA BND Web Bold", Verdana, Arial, Helvetica, sans-serif; }
+#mainmsg p { color: #072e5e; font-size: 18px; margin-left: 460px; }
 #nav { padding: 4px 0px 4px 0px; float: right; height: 22px; margin-top: 12px; }
 #nav ul { margin:0 0 0 12px; padding:0;font-family: Helvetica, Arial, sans-serif; font-size: 15px; padding-left: 8px;}
 #nav ul li {float: left; margin: 0;padding: 0;text-align: center;}
@@ -61,21 +62,21 @@ ul.list li { line-height: 1.5em; }
 }
 
 #index_sidebar {
- padding: 30px;
+ padding: 20px;
  float: right;
  width: 240px;
  font-size: 90%;
+ background: #fff url(../images/bg-sb.png) top left no-repeat;
 }
 
 .sidetitle {
- background: transparent url(../images/bg-sbt.png) no-repeat;
  height: 34px;
  width: 281px;
  font-size: 120%;
  padding-top: 5px;
  padding-left: 15px;
  margin-left: -4px;
- color: #fff;
+ color: #000;
  font-weight: bold;
 }
 

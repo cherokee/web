@@ -84,7 +84,7 @@ class Highlights (CTK.Container):
 class Home:
     def __call__ (self):
         page = Page.Page_Menu()
-        page += Top_Banner()
+        page.banner += Top_Banner()
 
         main_box  = CTK.Box ({'id': 'index_main'})
         main_box += Highlights()
