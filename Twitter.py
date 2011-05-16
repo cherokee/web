@@ -49,7 +49,7 @@ class Latest_Tweets_Widget (CTK.Box):
     def __init__ (self, num=6):
         CTK.Box.__init__ (self, {'id': 'latest_tweets'})
 
-        self += CTK.Box({'class': 'sidetitle'}, CTK.RawHTML('Latest Tweets'))
+        self += CTK.Box({'class': 'sidetitle'}, CTK.RawHTML('Twitter (<a href="http://twitter.com/#!/webserver" target="_blank">@webserver</a>)'))
 
         content_box = CTK.Box({'class': 'sidecontent'})
 
