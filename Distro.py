@@ -83,9 +83,42 @@ def get_authors():
     return names
 
 
+def get_orphans():
+    # Collect Orphan packages
+    info  = Distro_Info()
+    pkgs  = info.get('packages', {})
+
+    orphans = []
+    for pkg_name in pkgs:
+        pkg = pkgs[pkg_name]
+        maintainer = pkg.get('maintainer', {})
+        name = maintainer.get('name')
+
+        if not name:
+            orphans.append (pkg_name)
+
+    # [ pkg_name, ]
+    return orphans
+
+
 #
 # Widgets
 #
+class Orphans_List (CTK.Box):
+    def __init__ (self):
+        CTK.Box.__init__ (self, {'id': 'orphans_list'})
+        orphans = get_orphans()
+
+        # Build Widget
+        l = CTK.List()
+        for pkg_name in orphans:
+            entry = CTK.Box()
+            entry += CTK.RawHTML (pkg_name)
+            l += entry
+
+        self += l
+
+
 class Authors_List (CTK.Box):
     def __init__ (self):
         CTK.Box.__init__ (self, {'id': 'authors_list'})
@@ -138,3 +171,5 @@ def Latest_Tweets():
         latest_auth_wid_expiration = time.time() + CACHE_EXPIRATION
 
     return latest_auth_wid
+
+

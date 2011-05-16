@@ -40,14 +40,14 @@ deploying Web applications."""
 P2 = """It is specially interesting to notice that the project is
 driven by its community. Everybody is welcome to join in!"""
 
-JOIN_P1 = """Independent maintainers/packagers and ISVs are welcome to
-join this effort. If you know of any Web application you'd like to add
-to the Cherokee Distribution, please, do not hesitate to <a
-href="http://lists.octality.com/listinfo/distribution"
-target="_blank">drop us a line</a>.
+JOIN_P1 = """<b>Independent maintainers/packagers and ISVs are welcome to
+join to join the Cherokee Distribution</b>. If you know of any Web
+application that you would like to add to the Cherokee Distribution, do not
+hesitate to join the <a href="http://lists.octality.com/listinfo/distribution"
+target="_blank">Distribution mailing list</a>.
 """
 
-JOIN_P2 = """It's fairly straightforward to add a new package to the distribution:"""
+JOIN_P2 = """It is fairly straightforward to add a new package to the distribution:"""
 
 JOIN_L1 = {
     'Initial Check':       """Check that the application is either <i>Orphan</i> or has not been packaged yet. You'll find a list of orphan application on this page.""",
@@ -61,6 +61,10 @@ receive a repository account, so you can maintain it in the future."""
 MAINTAINERS_P1 = """A number of maintainers already work on this
 project in order to brind you these packages. We'd like to take the
 opportunity to thank them from these lines:"""
+
+ORPHANS_P1 = """
+There is a number of orphan packages waiting for a developer to adopt them.
+"""
 
 
 class Distribution:
@@ -94,9 +98,12 @@ class Distribution:
         page += CTK.RawHTML ("<p>%s</p>" %(MAINTAINERS_P1))
         page += Distro.Authors_List()
 
+        if Distro.get_orphans():
+            page += CTK.RawHTML ("<h2>Orphan Packages</h2>")
+            page += CTK.RawHTML ("<p>%s</p>" %(ORPHANS_P1))
+            page += Distro.Orphans_List()
+
         return CTK.HTTP_Cacheable (60, body=page.Render())
 
 
 CTK.publish (r'^%s(\.html)?$'%(URL_BASE), Distribution)
-
-
