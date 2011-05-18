@@ -47,11 +47,10 @@ def to_url(url):
 #
 class Latest_Tweets_Widget (CTK.Box):
     def __init__ (self, num=6):
-        CTK.Box.__init__ (self, {'id': 'latest_tweets'})
+        CTK.Box.__init__ (self, {'id': 'latest-tweets'})
 
-        self += CTK.Box({'class': 'sidetitle'}, CTK.RawHTML('Twitter (<a href="http://twitter.com/#!/webserver" target="_blank">@webserver</a>)'))
+        self += CTK.Box({'class': 'bar3-title'}, CTK.RawHTML('<a href="http://twitter.com/webserver" target="_blank">Recent Tweets</a>'))
 
-        content_box = CTK.Box({'class': 'sidecontent'})
 
         # Query
         data = feedparser.parse (TWITTER_URL)
@@ -62,24 +61,33 @@ class Latest_Tweets_Widget (CTK.Box):
         rc = re.compile(URL_RE)
 
         for entry in data['entries']:
-            link = CTK.util.to_utf8(entry['link'])
-            date = CTK.util.to_utf8(entry['updated']).split(', ')[1].split('+')[0]
+            content_box = CTK.Box({'class': 'tweet'})
+            link  = CTK.util.to_utf8(entry['link'])
+            month = CTK.util.to_utf8(entry['updated'])[8:11] 
+            day   = CTK.util.to_utf8(entry['updated'])[5:7]
+            date  = month + " " + day
 
             # Tidy up (before reformatting URLs).
+            #text = entry['summary'][SKIP_SZ:]
+            #if len(text) > MAX_SZ:
+            #    text = text[:MAX_SZ-3] + "..."
             text = entry['summary'][SKIP_SZ:]
-            if len(text) > MAX_SZ:
-                text = text[:MAX_SZ-3] + "..."
 
             tweet = rc.sub (to_url, text)
 
             # Layout
-            date_box = CTK.Box({'class': 'tweet-date'})
+            date_box = CTK.Box({'class': 'date'})
             date_box += CTK.LinkWindow (link, CTK.RawHTML(date))
 
-            content_box += CTK.RawHTML (tweet)
-            content_box += date_box
+            tweet_box = CTK.Box({'class': 'tweet-txt'})
+            tweet_box += CTK.RawHTML (tweet)
 
-        self += content_box
+            content_box += date_box
+            content_box += tweet_box
+
+            self += content_box
+
+        self += CTK.Box({'class': 'bar3-bottom-link'}, CTK.RawHTML('<a href="http://twitter.com/webserver" target="_blank">Follow Us on Twitter &raquo;</a>'))
 
 
 #

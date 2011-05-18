@@ -65,17 +65,17 @@ def get_commit_list (num):
 #
 class Latest_SVN_Commits_Widget (CTK.Box):
     def __init__ (self, num=6):
-        CTK.Box.__init__ (self, {'id': 'latest_svn_commit'})
+        CTK.Box.__init__ (self, {'id': 'latest-commits'})
 
-        self += CTK.Box({'class': 'sidetitle'}, CTK.RawHTML('Latest Commits'))
-
-        content_box = CTK.Box({'class': 'sidecontent'})
-
+        self += CTK.Box({'class': 'bar3-title'}, CTK.RawHTML('<a href="http://svn.cherokee-project.com/log.php?repname=Cherokee&path=%2F&rev=6636&isdir=1" target="_blank">Latest Commits</a>'))
 
         for commit in get_commit_list (num):
             rev     = commit[0][0]
             user    = commit[0][1]
-            date    = commit[0][2].split('(')[1][:-1]
+            month   = commit[0][2].split('(')[1][8:11]
+            day     = commit[0][2].split('(')[1][5:7]
+            date    = month + " " + day
+
             comment = commit[1]
 
             url  = os.path.join (SVN_HTTP_CHANGESET, rev[1:])
@@ -83,11 +83,18 @@ class Latest_SVN_Commits_Widget (CTK.Box):
             if len(comment) > COMMENT_MAX_SIZE:
                 comment = comment[:COMMENT_MAX_SIZE - 3] + "..."
 
-            content_box += CTK.LinkWindow (url, CTK.RawHTML(rev))
-            content_box += CTK.Box ({'class': 'comment'}, CTK.RawHTML (comment))
-            content_box += CTK.Box ({'class': 'details'}, CTK.RawHTML ('%(user)s | <b>%(date)s</b>'%(locals())))
+            content_box = CTK.Box({'class': 'commit'})
 
-        self += content_box
+            date_box = CTK.Box({'class': 'date'})
+            date_box += CTK.LinkWindow (url, CTK.RawHTML(date), {'title': rev})
+            content_box += date_box
+
+            commit_box = CTK.Box ({'class': 'commit-txt'}, CTK.RawHTML ('%(user)s: %(comment)s'%(locals())))
+            content_box += commit_box
+
+            self += content_box
+
+        self += CTK.Box({'class': 'bar3-bottom-link'}, CTK.RawHTML('<a href="http://svn.cherokee-project.com/log.php?repname=Cherokee&path=%2F&rev=6636&isdir=1" target="_blank">View Commits Log &raquo;</a>'))
 
 
 #

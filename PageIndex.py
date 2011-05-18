@@ -38,14 +38,25 @@ class Top_Banner (CTK.Box):
     def __init__ (self):
         CTK.Box.__init__ (self, {'id': 'sprint'})
 
-        latest_version = Downloads.get_latest_version()
-
         # Banner body
         box = CTK.Box ({'id': 'mainmsg'})
         box += CTK.RawHTML ('<h1>%s</h1>'%(self.H1))
         box += CTK.RawHTML ('<p>%s</p>'%(self.P1))
 
         # Download
+        link = CTK.Link ("/overview.html", props={'id': "overview"})
+        link += CTK.RawHTML ("Learn More")
+        box += link
+
+        self += box
+
+class Download_Box (CTK.Box):
+    def __init__ (self):
+        CTK.Box.__init__ (self, {'id': 'download-box'})
+
+        latest_version = Downloads.get_latest_version()
+        # Download
+        box = CTK.Box ({'id': 'download-msg'})
         link = CTK.Link ("/downloads.html", props={'id': "download"})
         link += CTK.RawHTML ("<span>Get Cherokee</span><br/>Download Cherokee %(latest_version)s"%(locals()))
         box += link
@@ -80,21 +91,76 @@ class Highlights (CTK.Container):
         box += l
         self += box
 
+class Sidebox (CTK.Container):
+    ELEMENTS = {
+        'download': {
+                        'icon': '/static/images/o.png',
+                        'url': '/downloads.html',
+                        'title': 'Download Cherokee Web Server',
+                        'hint': 'LATEST'
+                    },
+        'documentation': {
+                        'icon': '/static/images/o.png',
+                        'url': '/documentation.html',
+                        'title': 'Read the Documentation',
+                        'hint': 'Tutorials, recipes, etc'
+                    },
+        'contruibute': {
+                        'icon': '/static/images/o.png',
+                        'url': '/contribute.html',
+                        'title': 'Contribute to the project',
+                        'hint': 'Help us to develop the greatest Web Server'
+                    }
+    }
+
+    class Element (CTK.Container):
+        def __init__ (self, url, icon, title, hint):
+            CTK.Container.__init__ (self)
+            self += CTK.RawHTML ('<img src="%(icon)s" title="%(title)s"><a href="%(url)s">%(title)s</a><br/><span>%(hint)s</span>'%(locals()))
+
+    def __init__ (self):
+        CTK.Container.__init__ (self)
+
+        l = CTK.List ()
+        for k in self.ELEMENTS:
+            url = self.ELEMENTS[k]['url']
+            icon = self.ELEMENTS[k]['icon']
+            title = self.ELEMENTS[k]['title']
+            hint = self.ELEMENTS[k]['hint']
+            l += self.Element (url, icon, title, hint)
+
+        box = CTK.Box ({'id': 'main-links'})
+        box += l
+        self += box
+
+
 
 class Home:
     def __call__ (self):
         page = Page.Page_Menu()
         page.banner += Top_Banner()
 
-        main_box  = CTK.Box ({'id': 'index_main'})
+        main_box  = CTK.Box ({'id': 'index-main'})
         main_box += Highlights()
         page     += main_box
 
-        side_box  = CTK.Box ({'id': 'index_sidebar'})
-        side_box += Twitter.Latest_Tweets()
-        side_box += Commits.Latest_SVN_Commits()
-        side_box += MailingList.Latest_Mailing_List()
+        side_box  = CTK.Box ({'id': 'index-sidebox'})
+        side_box += Sidebox()
         page     += side_box
+
+        page     += CTK.Box({'class': 'clr'})
+
+        bar3  = CTK.Box ({'class': 'bar3'})
+        bar3 += Twitter.Latest_Tweets()
+        page += bar3
+
+        bar3  = CTK.Box ({'class': 'bar3'})
+        bar3 += Commits.Latest_SVN_Commits()
+        page += bar3
+
+        bar3  = CTK.Box ({'class': 'bar3'})
+        bar3 += MailingList.Latest_Mailing_List()
+        page += bar3
 
         page     += CTK.Box({'class': 'clr'})
 

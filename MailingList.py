@@ -75,7 +75,7 @@ def get_mailing_list_subjects():
         else:
             subjects[title]['hits'] += 1
         if not subjects[title].has_key('date'):
-            subjects[title]['date'] = date
+            subjects[title]['date'] = time.strftime("%b %d", time.strptime(date, "%Y-%m-%d"))
         if not subjects[title].has_key('authors'):
             subjects[title]['authors'] = []
         if not nick in subjects[title]['authors']:
@@ -96,12 +96,9 @@ def get_mailing_list_subjects():
 #
 class Latest_Mailing_List_Widget (CTK.Box):
     def __init__ (self, limit=6):
-        CTK.Box.__init__ (self, {'id': 'mailing_list_widget'})
+        CTK.Box.__init__ (self, {'id': 'mailing-list'})
 
-        self += CTK.Box({'class': 'sidetitle'}, CTK.RawHTML('Mailing List'))
-
-        content_box = CTK.Box({'class': 'sidecontent'})
-
+        self += CTK.Box({'class': 'bar3-title'}, CTK.RawHTML('<a href="http://lists.octality.com/listinfo/cherokee" target="_blank">Mailing List</a>'))
 
         ret = get_mailing_list_subjects()
         subjects, subject_list = ret
@@ -110,13 +107,20 @@ class Latest_Mailing_List_Widget (CTK.Box):
             subject = subjects[s]
             authors = '(%s)'  %(', '.join(subject['authors']))
 
-            box = CTK.Box({'class': 'ml-entry'})
-            box += CTK.RawHTML ('%s | %s messages | <b>%s</b>'%(authors, subject['hits'], subject['date']))
+            content_box = CTK.Box({'class': 'mail'})
+            
+            date_box = CTK.Box({'class': 'date'})
+            date_box += CTK.RawHTML(subject['date'])
+            content_box += date_box
 
-            content_box += CTK.LinkWindow (subject['link'], CTK.RawHTML(s))
+            box = CTK.Box({'class': 'mail-txt'})
+            box += CTK.LinkWindow (subject['link'], CTK.RawHTML(s))
+            box += CTK.RawHTML ('<br/>by %s, %s messages'%(authors, subject['hits']))
             content_box += box
+   
+            self += content_box
 
-        self += content_box
+        self += CTK.Box({'class': 'bar3-bottom-link'}, CTK.RawHTML('<a href="http://lists.octality.com/listinfo/cherokee" target="_blank">Subscribe to Cherokee Mailing List &raquo;</a>'))
 
 
 #
