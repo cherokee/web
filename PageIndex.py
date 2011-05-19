@@ -94,19 +94,19 @@ class Highlights (CTK.Container):
 class Sidebox (CTK.Container):
     ELEMENTS = {
         'download': {
-                        'icon': '/static/images/o.png',
+                        'icon': '/static/images/download.png',
                         'url': '/downloads.html',
                         'title': 'Download Cherokee Web Server',
                         'hint': 'LATEST'
                     },
         'documentation': {
-                        'icon': '/static/images/o.png',
+                        'icon': '/static/images/documentation.png',
                         'url': '/documentation.html',
                         'title': 'Read the Documentation',
                         'hint': 'Tutorials, recipes, etc'
                     },
         'contruibute': {
-                        'icon': '/static/images/o.png',
+                        'icon': '/static/images/contribute.png',
                         'url': '/contribute.html',
                         'title': 'Contribute to the project',
                         'hint': 'Help us to develop the greatest Web Server'

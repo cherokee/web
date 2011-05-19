@@ -24,7 +24,7 @@ html, body {
   height: 100%; 
 }
 body { 
-  background: #fff url(../images/bar.png) repeat-x;
+  background: #fff url(../images/bg.png);
   font-family: Helvetica, Arial, Tahoma, sans-serif;
   font-size: 14px; 
   text-align: center; 
@@ -44,11 +44,12 @@ h1, h2, h3 {
   font-weight: normal;
   margin: 0 0 8px 0; 
   padding:0; 
+  text-shadow: #fff 0px 1px 0px;
 }
 h1 { 
   color: #c00; 
-  font: 40px/40px Verdana, Arial, Helvetica, sans-serif; 
-  margin-top: 30px; 
+  font: 35px/35px Verdana, Arial, Helvetica, sans-serif; 
+  margin-bottom: 20px;
 }
 h1 a { 
   color: #c00; 
@@ -63,7 +64,8 @@ h2 {
   font-size: 150%; 
   font: 24px/24px Verdana, Arial, Helvetica, sans-serif; padding-bottom: 8px; 
   margin: 15px 0; 
-  border-bottom: 1px solid #def; 
+  border-bottom: 1px solid #eee; 
+  box-shadow: 0 1px 0 #fff;
 }
 .body-index h2 { 
   margin-top: 0; 
@@ -105,7 +107,6 @@ ul.list li {
 
 /* Layout */
 #container { 
-  background: #fff; 
   width: 980px; 
   margin: 0 auto; 
   text-align: left; 
@@ -113,20 +114,25 @@ ul.list li {
 }
 #footer { 
   width: 980px; 
-  padding-top: 60px;
   margin: 0 auto; 
+  margin-top: 60px;
   text-align: left; 
+  border-top: 1px solid #eee;
 }
 #footer-inner { 
+  border-top: 1px solid #fff;
   font-size: 90%; 
-  padding: 22px 30px 30px 90px; 
+  padding: 60px 30px 60px 90px; 
   color: #3465a4; 
-  background: transparent url(../images/o.png) 15px 15px no-repeat; 
+  background: transparent url(../images/o.png) 15px 45px no-repeat;
 }
 #bar  { 
+  height: 52px; 
+  background: #fff url(../images/bar.png);
+}
+#bar-inner {
   width: 980px; 
   margin: 0 auto; 
-  height: 52px; 
 }
 #sprint  { 
   background: #eff5fd url(../images/sprint.png) top center no-repeat; 
@@ -157,7 +163,8 @@ ul.list li {
 }
 #nav { 
   padding: 4px 0px 4px 0px; 
-  float: right; height: 22px; 
+  float: right; 
+  height: 22px; 
   margin-top: 12px; 
 }
 #nav ul { 
@@ -209,6 +216,19 @@ ul.list li {
   color: #fff; 
 }
 
+#sidebar {
+  padding: 0;
+  margin-top: 30px;
+  float: right;
+  width: 310px;
+}
+
+#main_area {
+  padding: 30px 30px 30px 0;
+  float: left;
+  width: 620px;
+}
+
 /* Index */
 #index-main {
   padding: 30px 30px 30px 0;
@@ -217,11 +237,10 @@ ul.list li {
 }
 
 #index-sidebox {
-  padding: 20px;
+  padding: 0;
+  margin-top: 40px;
   float: right;
-  width: 240px;
-  border: 1px solid #f90;
-  font-size: 90%;
+  width: 310px;
 }
 
 #features { 
@@ -242,11 +261,19 @@ ul.list li {
   float: left;
   margin: 0 0 15px 0; 
   padding-left: 24px; 
-  background: #fff url(../images/ok.png) 0 2px no-repeat; 
+  background: transparent url(../images/ok.png) 0 2px no-repeat; 
 }
 
 #main-links li {
-  height: 48px;
+  height: 50px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: #666;
+}
+
+#main-links li a {
+  font-size: 14px; 
+  line-height: 26px;
 }
 
 #main-links li img {
@@ -272,6 +299,9 @@ ul.list li {
 .bar3-title a { 
   text-decoration: none;
 }
+.bar3-title a:hover { 
+  text-decoration: underline;
+}
 
 .bar3-bottom-link {
   float: right;
@@ -280,6 +310,9 @@ ul.list li {
 
 .bar3-bottom-link a {
   text-decoration: none;
+}
+.bar3-bottom-link a:hover { 
+  text-decoration: underline;
 }
 
 
