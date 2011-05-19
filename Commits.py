@@ -94,7 +94,7 @@ class Latest_SVN_Commits_Widget (CTK.Box):
 
             self += content_box
 
-        self += CTK.Box({'class': 'bar3-bottom-link'}, CTK.RawHTML('<a href="http://svn.cherokee-project.com/log.php?repname=Cherokee&path=%2F&rev=6636&isdir=1" target="_blank">View Commits Log &raquo;</a>'))
+        self += CTK.Box({'class': 'bar3-bottom-link'}, CTK.RawHTML('<a href="http://svn.cherokee-project.com/log.php?repname=Cherokee&path=%2F&isdir=1" target="_blank">View Commits Log &raquo;</a>'))
 
 
 #

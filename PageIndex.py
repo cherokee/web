@@ -50,19 +50,6 @@ class Top_Banner (CTK.Box):
 
         self += box
 
-class Download_Box (CTK.Box):
-    def __init__ (self):
-        CTK.Box.__init__ (self, {'id': 'download-box'})
-
-        latest_version = Downloads.get_latest_version()
-        # Download
-        box = CTK.Box ({'id': 'download-msg'})
-        link = CTK.Link ("/downloads.html", props={'id': "download"})
-        link += CTK.RawHTML ("<span>Get Cherokee</span><br/>Download Cherokee %(latest_version)s"%(locals()))
-        box += link
-
-        self += box
-
 
 class Highlights (CTK.Container):
     H2 = "Features Highlights"
@@ -96,8 +83,8 @@ class Sidebox (CTK.Container):
         'download': {
                         'icon': '/static/images/download.png',
                         'url': '/downloads.html',
-                        'title': 'Download Cherokee Web Server',
-                        'hint': 'LATEST'
+                        'title': 'Download Cherokee %s'%(Downloads.get_latest_version()),
+                        'hint': 'Fetch the latest version of Cherokee'
                     },
         'documentation': {
                         'icon': '/static/images/documentation.png',
@@ -109,7 +96,7 @@ class Sidebox (CTK.Container):
                         'icon': '/static/images/contribute.png',
                         'url': '/contribute.html',
                         'title': 'Contribute to the project',
-                        'hint': 'Help us to develop the greatest Web Server'
+                        'hint': 'Help us to develop a better server!'
                     }
     }
 
