@@ -87,6 +87,7 @@ class Page_Menu (Page_Base):
         return self
 
     def Render (self):
+        Page_Base.__iadd__ (self, CTK.Box ({'class': 'clr'}))
         Page_Base.__iadd__ (self, Footer())
         return Page_Base.Render (self)
 

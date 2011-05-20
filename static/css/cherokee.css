@@ -51,6 +51,9 @@ h1 {
   font: 35px/35px Verdana, Arial, Helvetica, sans-serif; 
   margin-bottom: 20px;
 }
+h1.single {
+  margin-top: 30px;
+}
 h1 a { 
   color: #c00; 
   text-decoration: none; 
@@ -67,18 +70,51 @@ h2 {
   border-bottom: 1px solid #eee; 
   box-shadow: 0 1px 0 #fff;
 }
+
+h2 a, h2 a:hover {
+  color: #174783; 
+  text-decoration: none;
+}
 .body-index h2 { 
   margin-top: 0; 
 }
 h3 { 
-  color: #666; 
+  color: #111; 
   font-size: 120%; 
-  font-weight: normal; 
+  font-weight: bold; 
 }
 p { 
   margin-bottom: 1em; 
   line-height: 1.5em; 
 }
+button {
+    border: 0;
+    margin: 0;
+    padding: 6px 8px;
+    outline: none;
+    color: #27c;
+    font-weight: bold;
+    text-shadow: #fff 0px 1px 0px;
+    border: 1px solid #cde;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background: #ddeeff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ddeeff));
+    background: -moz-linear-gradient(top,  #ffffff,  #ddeeff);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ddeeff');
+    -moz-box-shadow: inset 1px 1px 0 #fff;
+    -webkit-box-shadow: inset 1px 1px 0 #fff;
+    box-shadow: inset 1px 1px 0 #fff;
+}
+button:active {
+    -moz-box-shadow: inset 0 1px 4px #def;
+    -webkit-box-shadow: inset 0 1px 4px #def;
+    box-shadow: inset 0 1px 4px #def;
+    padding: 7px 8px 5px 8px;
+}
+
+button:hover { cursor: pointer; }
 .clr:after { 
   visibility: hidden; 
   display: block; 
@@ -103,6 +139,13 @@ ul.list {
 }
 ul.list li { 
   line-height: 1.5em; 
+}
+
+.terminal {
+  padding: 10px;
+  color: #fafafa;
+  background: #000;
+  margin: 10px 0;
 }
 
 /* Layout */
@@ -221,6 +264,10 @@ ul.list li {
   margin-top: 30px;
   float: right;
   width: 310px;
+}
+
+#sidebar h2 {
+  font-size: 16px;
 }
 
 #main_area {
@@ -344,4 +391,70 @@ ul.list li {
 
 .tweet-txt, .commit-txt, .mail-txt {
   margin-left: 60px;
+}
+
+.ohloh-languages-box,
+.ohloh-cocomo-box {
+  margin-bottom: 30px;
+}
+
+.license-img { 
+  float: right; 
+  margin-left: 30px;
+}
+
+.gpl-text {
+  margin-top: 30px;
+}
+
+.end-of-terms {
+  font-size: 16px;
+  color: #000;
+  border: 0;
+  box-shadow: none;
+}
+
+.platform {
+}
+
+.platform {  
+  padding-left: 72px;
+  margin-bottom: 30px;
+}
+
+#platform-ubuntu { background: url('/static/images/icon-ubuntu.png') no-repeat; }
+#platform-debian { background: url('/static/images/icon-debian.png') no-repeat; margin-top: 32px; }
+
+#macosx-steps,
+#qs-videos {
+  height: 176px;
+}
+
+.macosx-step,
+.qs-video {
+  width: 170px;
+  margin: 3px;
+  float: left;
+  font-size: 10px;
+  line-height: 1.5em;
+}
+
+.macosx-step span, .macosx-step strong,
+.qs-video span, .qs-video strong {
+  display: block;
+  margin: 2px 8px;
+}
+
+.macosx-step img,
+.qs-video img {
+  width: 170px;
+  height: 106px;
+  margin: 4px 0;
+  cursor: pointer;
+}
+
+#nabbleforum {
+  width: 100%;
+  background: #fff;
+  padding: 30px;
 }

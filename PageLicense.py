@@ -351,7 +351,7 @@ PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGES.
 </p>
 
-	<h2>END OF TERMS AND CONDITIONS</h2>
+	<h2 class="end-of-terms">END OF TERMS AND CONDITIONS</h2>
 """
 
 class PageLicense:
@@ -359,11 +359,11 @@ class PageLicense:
         title = "License"
 
         page = Page.Page_Menu (title=title)
-        page += CTK.RawHTML ("<h1>%s</h1>"%(title))
+        page += CTK.RawHTML ("<h1 class=\"single\">%s</h1>"%(title))
 
+        page += CTK.Image ({'src': '/static/images/osi-certified-120x100.gif', 'class': 'license-img'})
         page += CTK.RawHTML ('<p>%s</p>' %(LICENSE_P1))
         page += CTK.RawHTML ('<p>%s</p>' %(LICENSE_P2))
-        page += CTK.Image ({'src': '/static/images/osi-certified-120x100.gif'})
         page += CTK.Box ({'class': 'gpl-text'}, CTK.RawHTML (GPL_v2))
 
         return CTK.HTTP_Cacheable (60, body=page.Render())
