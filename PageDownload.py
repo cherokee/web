@@ -52,15 +52,17 @@ OS_OPTIONS = [
 
 DOC_APTGET = 'http://www.cherokee-project.com/doc/basics_installation_unix.html#APT'
 
-class OS_Combo (CTK.Box):
+class OS_Panel (CTK.Box):
+    class OS_Icon (CTK.Image):
+        def __init__ (self, os_code, os_name):
+            CTK.Image.__init__ (self, {'src': '/static/images/os_%s.png'%(os_code), 'title': os_name})
+
     def __init__ (self):
         CTK.Box.__init__ (self)
         self.os_selected = None
 
+        # Detect the OS
         agent = CTK.request.headers.get ('HTTP_USER_AGENT').lower()
-
-        # Select entry
-        combo_props = {'name': 'os_combo'}
 
         if 'linux' in agent:
             self.os_selected = 'linux'
@@ -86,12 +88,15 @@ class OS_Combo (CTK.Box):
         if not self.os_selected:
             self.os_selected = 'source'
 
-        combo_props['selected'] = self.os_selected
-        self.combo = CTK.Combobox (combo_props, OS_OPTIONS)
-
-        # Combo
-        self += CTK.RawHTML ("<span>%s: </span>" %(_("Platform")))
+        # Build the widget content
+        self.combo = CTK.Combobox ({'style': 'display:none;', 'selected': self.os_selected}, OS_OPTIONS)
         self += self.combo
+
+        for e in OS_OPTIONS:
+            code, name = e
+            img = self.OS_Icon (code, name)
+            img.bind ('click', "$('#%s').val('%s').trigger('change');"%(self.combo.id, code))
+            self += img
 
 
 class Download_MacOSX:
@@ -244,7 +249,7 @@ class QuickStart:
         title = _("Quickstart Guide")
 
         # Install Cherokee
-        os_combo = OS_Combo()
+        os_combo = OS_Panel()
         druid    = CTK.Druid (CTK.RefreshableURL ('%s/%s'%(URL_BASE, os_combo.os_selected)))
 
         box  = CTK.Box ({'id': 'platform-box'})
