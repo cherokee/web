@@ -111,8 +111,8 @@ class Download_MacOSX:
         download_button.bind ('click', CTK.DruidContent__JS_to_goto (download_button.id, URL_MACOSX_2))
 
         content = CTK.Container()
-        content += CTK.RawHTML ('<h3>MacOS X (Intel)</h3>')
-        content += CTK.RawHTML ('<p>%s</p>'%(_("A binary package for MacOS X (Intel) is available: %sMb"%(mbs))))
+        content += CTK.RawHTML ('<h3>Binary Package</h3>')
+        content += CTK.RawHTML ('<p>%s</p>'%(_("A binary package for MacOS X (Intel) is available for download: %sMb"%(mbs))))
         content += download_button
 
         return content.Render().toStr()
@@ -167,8 +167,7 @@ class Download_Source:
 
         # Automatic
         content = CTK.Container()
-        content += CTK.RawHTML ("<h3>%s</h3>" %(_("From Source Code")))
-        content += CTK.RawHTML ("<h4>%s</h4>" %(_("Option 1: Automatic installation")))
+        content += CTK.RawHTML ("<h3>%s</h3>" %(_("Option 1: Automatic installation")))
 
         box  = CTK.Box()
         box += CTK.RawHTML ('<p>%s</p>' %(_('Open a terminal and enter:')))
@@ -179,7 +178,7 @@ class Download_Source:
         content += box
 
         # By hand
-        content += CTK.RawHTML ("<h4>%s</h4>" %(_("Option 2: Compile it by hand")))
+        content += CTK.RawHTML ("<h3>%s</h2>" %(_("Option 2: Compile it by hand")))
 
         sources  = CTK.Box()
         sources += CTK.RawHTML ('%s '%(_("Download")))
@@ -254,7 +253,6 @@ class QuickStart:
         step1  = CTK.Box({'id': 'qs-step-1', 'class': 'qs-step'})
         step1 += box
         step1 += CTK.RawHTML ('<h2>%s</h2>' %(_("Install Cherokee")))
-        step1 += CTK.RawHTML ('<p>%s</p>' %(_("Cherokee Market is available for Cherokee 1.2.0 or greater.")))
         step1 += druid
         os_combo.bind ('change', druid.JS_to_goto('"%s/"+$("#%s").val()' %(URL_BASE, os_combo.combo.id)))
 
