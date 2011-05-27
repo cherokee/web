@@ -120,7 +120,7 @@ class Download_MacOSX:
         content += CTK.RawHTML ('<p>%s</p>'%(_("A binary package for MacOS X (Intel) is available for download: %sMb"%(mbs))))
         content += download_button
 
-        return content.Render().toStr()
+        return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
 
 
 class Download_MacOSX_2:
@@ -162,7 +162,7 @@ class Download_MacOSX_2:
         box += CTK.RawHTML ('<span>%s</span>' %(_("Open Cherokee Admin")))
         content += box
 
-        return content.Render().toStr()
+        return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
 
 
 class Download_Source:
@@ -192,7 +192,7 @@ class Download_Source:
         sources += CTK.RawHTML ('<pre class="terminal">configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc<br/>make && sudo make install</pre>')
         content += sources
 
-        return content.Render().toStr()
+        return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
 
 
 class Download_Windows:
@@ -201,7 +201,7 @@ class Download_Windows:
         content += CTK.RawHTML ("<h3>%s</h3>" %(_("Windows packages coming soon...")))
         content += CTK.RawHTML ('<p>%s<br/>%s</p>' %(_('We are working really hard to provide native Windows packages soon.'),
                                                      _('Native Windows installers are expected by Summer 2011.')))
-        return content.Render().toStr()
+        return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
 
 
 class Download_Linux:
@@ -231,7 +231,8 @@ class Download_Linux:
 
         box += details
         content += box
-        return content.Render().toStr()
+        return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
+
 
 class Development_Version (CTK.Box):
     def __init__ (self):

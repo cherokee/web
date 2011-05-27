@@ -135,7 +135,7 @@ class Home:
         side_box += Sidebox()
         page     += side_box
 
-        page     += CTK.Box({'class': 'clr'})
+        page += CTK.Box({'class': 'clr'})
 
         bar3  = CTK.Box ({'class': 'bar3'})
         bar3 += Twitter.Latest_Tweets()
@@ -149,7 +149,7 @@ class Home:
         bar3 += MailingList.Latest_Mailing_List()
         page += bar3
 
-        page     += CTK.Box({'class': 'clr'})
+        page += CTK.Box({'class': 'clr'})
 
         return CTK.HTTP_Cacheable (10, body=page.Render())
 
