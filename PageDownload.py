@@ -270,7 +270,8 @@ class QuickStart:
         mirrors = Mirror_Sites.Mirrors()
         page.sidebar += mirrors
 
-        return CTK.HTTP_Cacheable (60, body=page.Render())
+        # This page cannot be cached. It'd break the OS detection.
+        return page.Render()
 
 
 CTK.publish (r'^%s(\.html)?$'%(URL_BASE), QuickStart)
