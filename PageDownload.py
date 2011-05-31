@@ -54,8 +54,9 @@ DOC_APTGET = 'http://www.cherokee-project.com/doc/basics_installation_unix.html#
 
 class OS_Panel (CTK.Box):
     class OS_Icon (CTK.Image):
-        def __init__ (self, os_code, os_name):
-            CTK.Image.__init__ (self, {'src': '/static/images/os_%s.png'%(os_code), 'title': os_name})
+        def __init__ (self, os_code, os_name, os_selected):
+     
+            CTK.Image.__init__ (self, {'src': '/static/images/os_%s.png'%(os_code), 'title': os_name, 'class': ['','os-selected'][os_code==os_selected]})
 
     def __init__ (self):
         CTK.Box.__init__ (self)
@@ -94,8 +95,8 @@ class OS_Panel (CTK.Box):
 
         for e in OS_OPTIONS:
             code, name = e
-            img = self.OS_Icon (code, name)
-            img.bind ('click', "$('#%s').val('%s').trigger('change');"%(self.combo.id, code))
+            img = self.OS_Icon (code, name, self.os_selected)
+            img.bind ('click', "$('#%s').val('%s').trigger('change'); $('.os-selected').removeClass('os-selected'); $(this).addClass('os-selected');"%(self.combo.id, code))
             self += img
 
 
@@ -258,13 +259,13 @@ class QuickStart:
 
         step1  = CTK.Box({'id': 'qs-step-1', 'class': 'qs-step'})
         step1 += box
+        step1 += CTK.RawHTML ("<h1>%s</h1>" %(title))
         step1 += CTK.RawHTML ('<h2>%s</h2>' %(_("Install Cherokee")))
         step1 += druid
         os_combo.bind ('change', druid.JS_to_goto('"%s/"+$("#%s").val()' %(URL_BASE, os_combo.combo.id)))
 
         # Page
         page = Page.Page_Menu_Side (title=title)
-        page += CTK.RawHTML ("<h1>%s</h1>" %(title))
         page  += step1
 
         # Development version
