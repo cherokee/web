@@ -66,7 +66,7 @@ class Mirrors_Widget (CTK.Box):
 
         self += CTK.RawHTML ('<h2>Mirrors</h2>')
         self += l_ok
-        self += CTK.RawHTML ('<h3>Outdates mirrors</h3>')
+        self += CTK.RawHTML ('<h3>Outdated mirrors</h3>')
         self += l_no
 
         # Last Checked

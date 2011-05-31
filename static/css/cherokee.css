@@ -79,9 +79,10 @@ h2 a, h2 a:hover {
   margin-top: 0; 
 }
 h3 { 
-  color: #111; 
-  font-size: 120%; 
+  color: #666; 
+  font-size: 110%; 
   font-weight: bold; 
+  margin-top: 10px;
 }
 p { 
   margin-bottom: 1em; 
@@ -486,4 +487,24 @@ ul.list li {
   width: 100%;
   background: #fff;
   padding: 30px;
+}
+
+.mirror-entry {
+  height: 24px;
+  width: 300px;
+  overflow: hidden;
+  white-space: pre;
+  font-size: 12px;
+}
+
+.mirror-entry img {
+  float: left;
+  margin-right: 4px;
+  margin-top: 2px;
+}
+
+.updated {
+  font-size: 11px;
+  color: #999;
+  margin-top: 20px;
 }
