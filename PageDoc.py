@@ -57,9 +57,10 @@ class Index (CTK.Box):
 
                 tmp = re.findall (r'link:(\S+)\[(.+)\](.*)$', line)
                 if tmp:
-                    self += CTK.RawHTML ('<h3><a href="%s">%s</a>%s</h3>' %(tmp[0][0], tmp[0][1], tmp[0][2]))
+                    self += CTK.RawHTML ('<div class="section-title"><a href="%s">%s</a><br/><span>%s</span></div>' %(tmp[0][0], tmp[0][1], tmp[0][2].replace(": ","")))
                 else:
-                    self += CTK.RawHTML ('<h3>%s</h3>' %(line))
+                    self += CTK.RawHTML ('<div class="section-title">%s</div>' %(line))
+
 
                 n += 2
                 continue
@@ -76,7 +77,7 @@ class Index (CTK.Box):
                     l += CTK.RawHTML ('<a href="%s">%s</a>%s' %(tmp[0][0], tmp[0][1], tmp[0][2]))
                     n += 1
 
-                    if lines[n].startswith(". "):
+                    if lines[n].strip().startswith(". "):
                         line = lines[n].strip()
                         continue
                     else:
