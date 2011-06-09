@@ -88,7 +88,7 @@ class Sidebox (CTK.Container):
                     },
         'documentation': {
                         'icon': '/static/images/documentation.png',
-                        'url': '/documentation.html',
+                        'url': '/doc',
                         'title': 'Read the Documentation',
                         'hint': 'Tutorials, recipes, etc'
                     },

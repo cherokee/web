@@ -69,7 +69,7 @@ class Index (CTK.Box):
                 # . link:dev_quickstart.html[Quickstart]: Where to start?.
                 # . link:dev_debug.html[Debugging]: Resources available to debug Cherokee.
                 #
-                l = CTK.List()
+                l = CTK.List({'class': 'section-list'})
                 self += l
 
                 while True:
@@ -84,10 +84,6 @@ class Index (CTK.Box):
                         break
             else:
                 n+= 1
-
-
-        self += CTK.RawHTML ("index")
-
 
 class PageDoc:
     def __call__ (self):
@@ -107,6 +103,7 @@ class PageDoc:
         # Title
         title = help_file.replace ('_', ' ').replace('.html', '') + ": Documentation"
         page = Page.Page_Menu_Side (title=title)
+
         page += CTK.RawHTML ("<h1>Documentation</h1>")
 
         # Security check

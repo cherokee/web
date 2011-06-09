@@ -79,6 +79,12 @@ h2 a, h2 a:hover {
   margin-top: 0; 
 }
 h3 { 
+  color: #174783; 
+  font-size: 120%; 
+  font-weight: bold; 
+  margin-top: 10px;
+}
+h4 { 
   color: #666; 
   font-size: 110%; 
   font-weight: bold; 
@@ -244,7 +250,7 @@ ul.list li {
   position: absolute; 
   top: 0;
 }
-#overview { 
+#mainmsg #overview { 
   background: #383; 
   font-weight: bold;
   float: right;
@@ -506,5 +512,104 @@ ul.list li {
 .updated {
   font-size: 11px;
   color: #999;
+  margin-top: 20px;
+}
+
+.doc-content {
+  background: #fff;
+  padding: 10px;
+}
+
+li .ulist {
+  margin-left: 10px;
+}
+
+.olist {
+  margin: 20px 40px;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+
+.content img {
+  width: 100%;
+  margin: 20px 0;
+  padding: 5px;
+  border: 1px solid #eaeaea;
+  background: #fafafa;
+}
+
+.content pre {
+  padding: 10px;
+  color: #fafafa;
+  background: #000;
+  margin: 10px 0;
+  font-size: 12px;
+}
+
+.section-title {
+  background: #f90;
+  margin: 20px 0;
+  padding: 5px 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #f1f1f1;
+}
+
+.section-title a {
+  font-size: 120%;
+  text-shadow: #fff 0px 1px 0px;
+}
+
+.section-title span {
+  color: #666;
+  font-size: 90%;
+  text-shadow: #fff 0px 1px 0px;
+}
+
+.section-list li {
+  font-size: 90%;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  background: transparent url(../images/li-bullet.png) 10px 4px no-repeat;
+}
+
+#main_area #footer { display: none; }
+
+h2[id^='_a_'] {
+  display: none;
+}
+
+.tableblock table {
+  border: 1px solid #cde;
+  border-collapse: collapse;
+  font-size: 95%;
+  margin-bottom: 20px;
+}
+
+.tableblock th {
+  background: #def;
+  padding: 5px;
+  border: 1px solid #cde;
+}
+
+.tableblock td {
+  border: 1px solid #cde;
+  background: #fcfcfc;
+  padding: 4px;
+}
+
+.image-title {
+  font-size: 80%;
+  text-align: center;
+  margin-bottom:40px;
+}
+
+#main_area h3 {
+  margin-top: 30px;
+}
+
+#main_area h4 {
   margin-top: 20px;
 }
