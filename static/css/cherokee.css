@@ -62,7 +62,7 @@ h1 a:hover {
   color: #c00; 
   text-decoration: underline; 
 }
-h2 { 
+h2 {
   color: #174783; 
   font-size: 150%; 
   font: 24px/24px Verdana, Arial, Helvetica, sans-serif; padding-bottom: 8px; 
@@ -84,11 +84,11 @@ h3 {
   font-weight: bold; 
   margin-top: 10px;
 }
-h4 { 
+h4, .olist .title {  
   color: #666; 
   font-size: 110%; 
   font-weight: bold; 
-  margin-top: 10px;
+  margin: 10px 0;
 }
 p { 
   margin-bottom: 1em; 
