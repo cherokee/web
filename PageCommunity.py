@@ -50,20 +50,26 @@ class PageCommunity:
         page.sidebar += ProudList.DomainList()
 
         # Content
-        page += CTK.RawHTML ('<h2>Mailing Lists / Forums</h2>')
-        page += CTK.RawHTML ('<p>%s</p>' %(MAILING_P1))
-        page += CTK.RawHTML ('<p>%s</p>' %(MAILING_P2))
+        box  = CTK.Box ({'class': 'community-lists'})
+        box += CTK.RawHTML ('<h2>Mailing Lists / Forums</h2>')
+        box += CTK.RawHTML ('<p>%s</p>' %(MAILING_P1))
+        box += CTK.RawHTML ('<p>%s</p>' %(MAILING_P2))
+        page += box
 
-        page += CTK.RawHTML ('<h2>IRC / Chat</h2>')
-        page += CTK.RawHTML ('<p>%s</p>' %(IRC_P1))
+        box  = CTK.Box ({'class': 'community-chat'})
+        box += CTK.RawHTML ('<h2>IRC / Chat</h2>')
+        box += CTK.RawHTML ('<p>%s</p>' %(IRC_P1))
+        page += box
 
-        page += CTK.RawHTML ('<h2>Social Networks</h2>')
+        box  = CTK.Box ({'class': 'community-social'})
+        box += CTK.RawHTML ('<h2>Social Networks</h2>')
         l = CTK.List()
-        l += CTK.LinkWindow ("http://www.twitter.com/webserver", CTK.RawHTML("Twitter"))
-        l += CTK.LinkWindow ("http://www.linkedin.com/groups/Cherokee-Web-Server-1819726", CTK.RawHTML("LinkedIn"))
-        l += CTK.LinkWindow ("http://www.facebook.com/cherokee.project", CTK.RawHTML("Facebook"))
-        page += CTK.RawHTML ('<p>%s</p>' %(SOCIAL_P1))
-        page += l
+        l += CTK.LinkWindow ("http://www.twitter.com/webserver", CTK.RawHTML("Twitter"), {'class': 'twitter-link'})
+        l += CTK.LinkWindow ("http://www.linkedin.com/groups/Cherokee-Web-Server-1819726", CTK.RawHTML("LinkedIn"), {'class': 'linkedin-link'})
+        l += CTK.LinkWindow ("http://www.facebook.com/cherokee.project", CTK.RawHTML("Facebook"), {'class': 'fb-link'})
+        box += CTK.RawHTML ('<p>%s</p>' %(SOCIAL_P1))
+        box += l
+        page += box
 
         return CTK.HTTP_Cacheable (60, body=page.Render())
 
