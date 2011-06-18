@@ -137,29 +137,29 @@ class Download_MacOSX_2:
 
         # Step 1
         box = CTK.Box({'class': 'macosx-step'})
-        box += CTK.RawHTML ('<strong>%s</strong>' %(_("Step 1")))
         box += CTK.Image({'src': "/static/images/dmg1.png"})
+        box += CTK.RawHTML ('<strong>%s</strong>' %(_("Step 1")))
         box += CTK.RawHTML ('<span>%s</span>' %(_("Save and Open the Cherokee installer")))
         content += box
 
         # Step 2
         box = CTK.Box({'class': 'macosx-step'})
-        box += CTK.RawHTML ('<strong>%s</strong>' %(_("Step 2")))
         box += CTK.Image({'src': "/static/images/dmg2.png"})
+        box += CTK.RawHTML ('<strong>%s</strong>' %(_("Step 2")))
         box += CTK.RawHTML ('<span>%s</span>' %(_("Install the package")))
         content += box
 
         # Step 3
         box = CTK.Box({'class': 'macosx-step'})
-        box += CTK.RawHTML ('<strong>%s</strong>' %(_("Step 3")))
         box += CTK.Image({'src': "/static/images/dmg3.png"})
+        box += CTK.RawHTML ('<strong>%s</strong>' %(_("Step 3")))
         box += CTK.RawHTML ('<span>%s</span>' %(_("Drag Cherokee Admin to your application folder")))
         content += box
 
         # Step 4
         box = CTK.Box({'class': 'macosx-step'})
-        box += CTK.RawHTML ('<strong>%s</strong>' %(_("Step 4")))
         box += CTK.Image({'src': "/static/images/dmg4.png"})
+        box += CTK.RawHTML ('<strong>%s</strong>' %(_("Step 4")))
         box += CTK.RawHTML ('<span>%s</span>' %(_("Open Cherokee Admin")))
         content += box
 

@@ -437,16 +437,16 @@ ul.list li {
 }
 
 #platform-box img {
-  width: 50px;
-  height: 50px;
+  height: 40px;
   margin-left: 20px;
   margin-bottom: 10px;
 }
 
 .os-selected {
-  width: 70px !important;
+  width: 80px !important;
   height: 70px !important;
   margin-left: 0px !important;
+  background: url('/static/images/os-selected.png') no-repeat;
 }
 
 .platform {  
@@ -461,32 +461,28 @@ ul.list li {
 #platform-ubuntu { background: url('/static/images/icon-ubuntu.png') no-repeat; }
 #platform-debian { background: url('/static/images/icon-debian.png') no-repeat; margin-top: 32px; }
 
-#macosx-steps,
-#qs-videos {
-  height: 176px;
+#macosx-steps {
 }
 
-.macosx-step,
-.qs-video {
-  width: 170px;
+.macosx-step {
   margin: 3px;
-  float: left;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5em;
+  height: 120px;
 }
 
-.macosx-step span, .macosx-step strong,
-.qs-video span, .qs-video strong {
+.macosx-step span, .macosx-step strong {
   display: block;
   margin: 2px 8px;
 }
 
-.macosx-step img,
-.qs-video img {
+.macosx-step img {
+  float: right;
   width: 170px;
   height: 106px;
   margin: 4px 0;
   cursor: pointer;
+  padding-right: 10px;
 }
 
 #nabbleforum {
