@@ -138,6 +138,9 @@ mirror_list = (
     {'name': "RedIris",
      'code': "es",
      'http': "http://ftp.rediris.es/mirror/cherokee/"},
+    {'name': "ComunidadHosting",
+     'code': "es",
+     'http': "http://www.comunidadhosting.com/mirror/cherokee/"},
 
     # The Netherlands
     {'name': "NLUUG",
