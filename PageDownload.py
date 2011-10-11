@@ -55,7 +55,7 @@ DOC_APTGET = 'http://www.cherokee-project.com/doc/basics_installation_unix.html#
 class OS_Panel (CTK.Box):
     class OS_Icon (CTK.Image):
         def __init__ (self, os_code, os_name, os_selected):
-     
+
             CTK.Image.__init__ (self, {'src': '/static/images/os_%s.png'%(os_code), 'title': os_name, 'class': ['','os-selected'][os_code==os_selected]})
 
     def __init__ (self):
@@ -240,9 +240,9 @@ class Development_Version (CTK.Box):
         CTK.Box.__init__ (self, {'class': 'download-svn-box'})
         self += CTK.RawHTML ('<h2>%s</h2>' %("Development Snapshots"))
         self += CTK.RawHTML ("You can also retrieve the current development sources ")
-        self += CTK.Link ("/svn.html", CTK.RawHTML ("using SVN"))
+        self += CTK.LinkWindow ("https://github.com/cherokee/webserver", CTK.RawHTML ("using Git"))
         self += CTK.RawHTML (" or downloading the ")
-        self += CTK.Link ("/download/trunk/cherokee-latest-svn.tar.gz", CTK.RawHTML ("latest SVN snapshot"))
+        self += CTK.Link ("/download/trunk/cherokee-latest-snapshot.tar.gz", CTK.RawHTML ("latest snapshot"))
         self += CTK.RawHTML (".")
 
 

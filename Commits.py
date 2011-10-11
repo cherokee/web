@@ -26,35 +26,38 @@
 import os
 import CTK
 import time
+import config
 
-SVN_QUERY_URL      = "svn://cherokee-project.com/"
-SVN_HTTP_CHANGESET = "http://svn.cherokee-project.com/changeset"
-CACHE_EXPIRATION   = 10 * 60 # 10mins
-COMMENT_MAX_SIZE   = 52
+CACHE_EXPIRATION = 10 * 60 # 10mins
+COMMENT_MAX_SIZE = 60
 
-#
-# Internals
-#
-def get_commit_list (num):
-    # Query SVN server
-    f = os.popen ("svn log %s --limit %d" %(SVN_QUERY_URL, num))
+def run (cmd):
+    f = os.popen ("cd '%s'; %s" %(config.GIT_CHEROKEE_LOCAL, cmd))
     cont = f.read()
     try:
         f.close()
     except:
         pass
+    return cont
+
+#
+# Internals
+#
+def get_commit_list (num):
+    # Update
+    run ('git pull')
+
+    # Query SVN server
+    cont = run ('git log --pretty=format:"%an||%ar||%s||%H" -'+str(num))
 
     # Parse
     parsed = []
 
-    log_entries = cont.split("-"*72)
-    for entry in log_entries:
-        if not entry.strip():
+    for line in cont.split('\n'):
+        parts = line.split("||")
+        if len(parts) != 4:
             continue
 
-        parts = entry.split("\n", 2)[1:]
-        parts[0] = parts[0].split(' | ')
-        parts[1] = parts[1].strip().replace('\n', ' ')
         parsed.append (parts)
 
     return parsed
@@ -64,25 +67,21 @@ def get_commit_list (num):
 # Widget
 #
 class Latest_SVN_Commits_Widget (CTK.Box):
-    def __init__ (self, num=6):
+    def __init__ (self, num=7):
         CTK.Box.__init__ (self, {'id': 'latest-commits'})
 
         self += CTK.Box({'class': 'bar3-title'}, CTK.RawHTML('<a href="http://svn.cherokee-project.com/log.php?repname=Cherokee&path=%2F&rev=6636&isdir=1" target="_blank">Latest Commits</a>'))
 
         for commit in get_commit_list (num):
-            rev     = commit[0][0]
-            user    = commit[0][1]
-            month   = commit[0][2].split('(')[1][8:11]
-            day     = commit[0][2].split('(')[1][5:7]
-            date    = month + " " + day
-
-            comment = commit[1]
-
-            url  = os.path.join (SVN_HTTP_CHANGESET, rev[1:])
+            user    = commit[0]
+            date    = commit[1]
+            comment = commit[2]
+            rev     = commit[3]
 
             if len(comment) > COMMENT_MAX_SIZE:
                 comment = comment[:COMMENT_MAX_SIZE - 3] + "..."
 
+            url = "https://github.com/cherokee/webserver/commit/" + rev
             content_box = CTK.Box({'class': 'commit'})
 
             date_box = CTK.Box({'class': 'date'})
@@ -94,7 +93,7 @@ class Latest_SVN_Commits_Widget (CTK.Box):
 
             self += content_box
 
-        self += CTK.Box({'class': 'bar3-bottom-link'}, CTK.RawHTML('<a href="http://svn.cherokee-project.com/log.php?repname=Cherokee&path=%2F&isdir=1" target="_blank">View Commits Log &raquo;</a>'))
+        self += CTK.Box({'class': 'bar3-bottom-link'}, CTK.RawHTML('<a href="https://github.com/cherokee/webserver/commits/master/" target="_blank">View Commits Log &raquo;</a>'))
 
 
 #
