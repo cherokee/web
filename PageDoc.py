@@ -117,7 +117,8 @@ class PageDoc:
 
         # Read it
         html = open(local_file, 'r').read()
-        body = html [html.find ('<body>')+6 : html.find('</body>')]
+        rc = re.compile('<body.*?>(.*?)</body>', re.IGNORECASE|re.DOTALL);
+        body = rc.search(html)
 
         # Layout
         if sidebar:
