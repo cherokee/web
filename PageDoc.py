@@ -117,8 +117,12 @@ class PageDoc:
 
         # Read it
         html = open(local_file, 'r').read()
-        rc = re.compile('<body.*?>(.*?)</body>', re.IGNORECASE|re.DOTALL);
-        body = rc.search(html)
+        tmp = re.findall ('<body.*?>(.*?)</body>', html, re.IGNORECASE|re.DOTALL)
+        if not tmp:
+            page += CTK.RawHTML ('no body')
+            return page.Render()
+
+        body = tmp[0]
 
         # Layout
         if sidebar:
