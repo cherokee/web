@@ -189,8 +189,10 @@ class Download_Source:
         sources  = CTK.Box()
         sources += CTK.RawHTML ('%s '%(_("Download")))
         sources += CTK.Link (tar_web, CTK.RawHTML (_("latest source code package")))
-        sources += CTK.RawHTML (', and install it by hand doing the configure, make, make install dance')
+        sources += CTK.RawHTML (', and install it by hand doing the <i>./configure, make, make install</i> dance.')
         sources += CTK.RawHTML ('<pre class="terminal">configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc<br/>make && sudo make install</pre>')
+        sources += CTK.RawHTML ('Older releases are also available at our <a href="/download/">Downloads archive</a>.')
+
         content += sources
 
         return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
@@ -199,9 +201,10 @@ class Download_Source:
 class Download_Windows:
     def __call__ (self):
         content = CTK.Container()
-        content += CTK.RawHTML ("<h3>%s</h3>" %(_("Windows packages coming soon...")))
-        content += CTK.RawHTML ('<p>%s<br/>%s</p>' %(_('We are working really hard to provide native Windows packages soon.'),
-                                                     _('Native Windows installers are expected by Summer 2011.')))
+        content += CTK.RawHTML ("<h3>%s</h3>" %(_("The Windows port is an ongoing effort...")))
+        content += CTK.RawHTML ("<p>%s</p>" %(_('Even though the source code of the Cherokee Web Server can be compiled on Windows (<i>with the mingw + msys</i>), it is not stable enough to be considered production ready.')))
+        content += CTK.RawHTML ("<p>%s</p>" %(_('Developers are welcome to join the effort of finishing the port of Cherokee to Windows. Do not hesitate to <a href="http://git.cherokee-project.com/" target="_blank">join us</a>!')))
+
         return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
 
 
