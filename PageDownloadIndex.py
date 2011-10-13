@@ -31,7 +31,6 @@ from config import *
 
 URL_BASE = "/download"
 
-
 def sort_files (x, y):
     x_is_dir = os.path.isdir(x)
     y_is_dir = os.path.isdir(y)
@@ -48,9 +47,9 @@ class Index (CTK.Box):
     def __init__ (self, web_path):
         CTK.Box.__init__ (self)
 
-        self += CTK.RawHTML ('<h1>Index of %s</h1>'%(web_path))
+        self += CTK.RawHTML ('<h1>Index of %s</h1>'%(web_path or "/"))
 
-        if web_path.count('/') >= 2:
+        if web_path.count('/') >= 1:
             up_dir = os.path.realpath (URL_BASE + web_path + "/../")
             self += CTK.Link (up_dir, CTK.RawHTML(_("Parent Directory")))
             self += CTK.RawHTML ("<br/>")
