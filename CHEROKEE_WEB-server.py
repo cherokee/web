@@ -30,6 +30,7 @@ import sys
 import CTK
 import PageIndex
 import PageDownload
+import PageDownloadIndex
 import PageSVN
 import PageDistro
 import PageDoc
