@@ -36,7 +36,7 @@ class Footer (CTK.Box):
 
         box  = CTK.Box ({'id': 'footer-inner'})
         box += CTK.RawHTML ('Obviously powered by Cherokee!<br/>')
-        box += CTK.RawHTML ('&copy; 2001-2010 ')
+        box += CTK.RawHTML ('&copy; 2001-2011 ')
         box += CTK.LinkWindow (self.ALVARO_URL, CTK.RawHTML('Alvaro Lopez Ortega'))
         self += box
 
