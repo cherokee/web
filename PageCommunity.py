@@ -64,6 +64,7 @@ class PageCommunity:
         box  = CTK.Box ({'class': 'community-social'})
         box += CTK.RawHTML ('<h2>Social Networks</h2>')
         l = CTK.List()
+        l += CTK.LinkWindow ("http://www.github.com/cherokee", CTK.RawHTML("Github"), {'class': 'github-link'})
         l += CTK.LinkWindow ("http://www.twitter.com/webserver", CTK.RawHTML("Twitter"), {'class': 'twitter-link'})
         l += CTK.LinkWindow ("http://www.linkedin.com/groups/Cherokee-Web-Server-1819726", CTK.RawHTML("LinkedIn"), {'class': 'linkedin-link'})
         l += CTK.LinkWindow ("http://www.facebook.com/cherokee.project", CTK.RawHTML("Facebook"), {'class': 'fb-link'})

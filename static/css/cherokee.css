@@ -693,3 +693,7 @@ h2[id^='_a_'] {
 .linkedin-link {
   background: transparent url(../images/linkedin.png) no-repeat;
 }
+
+.github-link {
+  background: transparent url(../images/github.png) no-repeat;
+}
