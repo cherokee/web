@@ -39,6 +39,7 @@ import PageForum
 import PageContribute
 import PageLicense
 import PageMarketing
+import PageScreencasts
 
 if len(sys.argv) > 1:
     port = sys.argv[1]
