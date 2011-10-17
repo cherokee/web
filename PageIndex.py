@@ -30,6 +30,15 @@ import Commits
 import Downloads
 import MailingList
 
+URL_LEARN_MORE = '/learn_more.html'
+
+
+class Learn_More:
+    def __call__ (self):
+        cont = CTK.Container()
+        cont += CTK.RawHTML ("This is still WIP")
+        return cont.Render().toStr()
+
 
 class Top_Banner (CTK.Box):
     H1 = "Evolved Web Infrastructure Software"
@@ -38,17 +47,21 @@ class Top_Banner (CTK.Box):
     def __init__ (self):
         CTK.Box.__init__ (self, {'id': 'sprint'})
 
+        dialog = CTK.DialogProxyLazy (URL_LEARN_MORE)
+
         # Banner body
         box = CTK.Box ({'id': 'mainmsg'})
         box += CTK.RawHTML ('<h1>%s</h1>'%(self.H1))
         box += CTK.RawHTML ('<p>%s</p>'%(self.P1))
 
         # Download
-        link = CTK.Link ("/overview.html", props={'id': "overview"})
+        link = CTK.Link (None, props={'id': "overview"})
         link += CTK.RawHTML ("Learn More")
-        box += link
+        link.bind ('click', dialog.JS_to_show())
 
+        box += link
         self += box
+        self += dialog
 
 
 class Highlights (CTK.Container):
@@ -154,4 +167,5 @@ class Home:
         return CTK.HTTP_Cacheable (10, body=page.Render())
 
 
-CTK.publish ('^/(index)?$', Home)
+CTK.publish ('^/(index)?$',           Home)
+CTK.publish ('^%s$'%(URL_LEARN_MORE), Learn_More)

@@ -18,7 +18,6 @@ class MenuBar (CTK.Box):
         nav =  CTK.Box ({'id': 'nav'})
 
         l = CTK.List()
-        l += CTK.Link ("/overview.html",  CTK.RawHTML("Overview"))
         l += CTK.Link ("/downloads.html",  CTK.RawHTML("Download"))
         l += CTK.Link ("/doc/",            CTK.RawHTML("Documentation"))
         l += CTK.Link ("/community.html",  CTK.RawHTML("Community"))
