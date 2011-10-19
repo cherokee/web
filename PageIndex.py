@@ -105,7 +105,7 @@ class Sidebox (CTK.Container):
                         'title': 'Read the Documentation',
                         'hint': 'Tutorials, recipes, etc'
                     },
-        'contruibute': {
+        'contribute': {
                         'icon': '/static/images/contribute.png',
                         'url': '/contribute.html',
                         'title': 'Contribute to the project',
