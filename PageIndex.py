@@ -155,7 +155,7 @@ class Home:
         page += bar3
 
         bar3  = CTK.Box ({'class': 'bar3'})
-        bar3 += Commits.Latest_SVN_Commits()
+        bar3 += Commits.Latest_GIT_Commits()
         page += bar3
 
         bar3  = CTK.Box ({'class': 'bar3'})

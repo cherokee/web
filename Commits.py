@@ -66,11 +66,11 @@ def get_commit_list (num):
 #
 # Widget
 #
-class Latest_SVN_Commits_Widget (CTK.Box):
+class Latest_GIT_Commits_Widget (CTK.Box):
     def __init__ (self, num=7):
         CTK.Box.__init__ (self, {'id': 'latest-commits'})
 
-        self += CTK.Box({'class': 'bar3-title'}, CTK.RawHTML('<a href="http://svn.cherokee-project.com/log.php?repname=Cherokee&path=%2F&rev=6636&isdir=1" target="_blank">Latest Commits</a>'))
+        self += CTK.Box({'class': 'bar3-title'}, CTK.RawHTML('<a href="https://github.com/cherokee/webserver/commits/dev" target="_blank">Latest Commits</a>'))
 
         for commit in get_commit_list (num):
             user    = commit[0]
@@ -93,7 +93,7 @@ class Latest_SVN_Commits_Widget (CTK.Box):
 
             self += content_box
 
-        self += CTK.Box({'class': 'bar3-bottom-link'}, CTK.RawHTML('<a href="https://github.com/cherokee/webserver/commits/master/" target="_blank">View Commits Log &raquo;</a>'))
+        self += CTK.Box({'class': 'bar3-bottom-link'}, CTK.RawHTML('<a href="https://github.com/cherokee/webserver/commits/dev" target="_blank">View Commits Log &raquo;</a>'))
 
 
 #
@@ -102,12 +102,12 @@ class Latest_SVN_Commits_Widget (CTK.Box):
 latest_widget            = None
 latest_widget_expiration = None
 
-def Latest_SVN_Commits():
+def Latest_GIT_Commits():
     global latest_widget
     global latest_widget_expiration
 
     if not latest_widget or time.time() > latest_widget_expiration:
-        latest_widget            = Latest_SVN_Commits_Widget()
+        latest_widget            = Latest_GIT_Commits_Widget()
         latest_widget_expiration = time.time() + CACHE_EXPIRATION
 
     return latest_widget
