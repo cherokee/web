@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- Mode: python; coding: utf-8 -*-
 
 #
@@ -24,27 +23,15 @@
 # 02110-1301, USA.
 #
 
-import os
-import sys
-
 import CTK
-import PageIndex
-import PageDownload
-import PageDownloadIndex
-import PageSVN
-import PageDistro
-import PageDoc
-import PageCommunity
-import PageForum
-import PageContribute
-import PageLicense
-import PageMarketing
-import PageScreencasts
-import PageDownloadLatest
+import Downloads
 
-if len(sys.argv) > 1:
-    port = sys.argv[1]
-else:
-    port = os.getenv('SCGI_PORT', '8090')
+URL = '/cherokee-latest-tarball'
 
-CTK.run (port = int(port))
+class Redirect_to_Latest_Tarball:
+    def __call__ (self):
+        tarball_refs = Downloads.get_latest_tarball()
+        tar_local, tar_web = tarball_refs
+        return CTK.HTTP_Redir (tar_web)
+
+CTK.publish ('^%s$'%(URL), Redirect_to_Latest_Tarball)
