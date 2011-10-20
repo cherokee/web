@@ -23,10 +23,13 @@
 # 02110-1301, USA.
 #
 
+import os
 import CTK
 import Downloads
+from config import *
 
-URL = '/cherokee-latest-tarball'
+URL_LATEST  = '/cherokee-latest-tarball'
+URL_INSTALL = '/install'
 
 class Redirect_to_Latest_Tarball:
     def __call__ (self):
@@ -34,4 +37,11 @@ class Redirect_to_Latest_Tarball:
         tar_local, tar_web = tarball_refs
         return CTK.HTTP_Redir (tar_web)
 
-CTK.publish ('^%s$'%(URL), Redirect_to_Latest_Tarball)
+class XSendfile_Installer:
+    def __call__ (self):
+        fp = os.path.join (GIT_INSTALLER_LOCAL, "install.py")
+        return CTK.HTTP_XSendfile (fp)
+
+
+CTK.publish ('^%s$'%(URL_LATEST),  Redirect_to_Latest_Tarball)
+CTK.publish ('^%s$'%(URL_INSTALL), XSendfile_Installer)
