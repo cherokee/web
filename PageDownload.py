@@ -104,12 +104,15 @@ class Download_MacOSX:
     def __call__ (self):
         # Find the DMG file
         dmg_refs = Downloads.get_latest_macosx_dmg()
-        # no macos package found
+
+        # No MacOS package found
         if not dmg_refs:
             content = CTK.Container()
-            content += CTK.RawHTML ("<h3>%s</h3>" %(_("We can't find now packaged version...")))
-            content += CTK.RawHTML ("<p>%s</p>" %(_("We recommend to use git and compile cherokee.")))
+            content += CTK.RawHTML ("<h3>%s</h3>" %(_("Could not find the MacOS X package")))
+            content += CTK.RawHTML ("<p>%s</p>" %(_("It seems that the MacOS X package for the latest version has not been compiled yet.")))
+            content += CTK.RawHTML ("<p>%s</p>" %(_("Due the circunstances, we encourage you to download the source code and compile it by hand.")))
             return CTK.HTTP_Cacheable (60, body = content.Render().toStr())
+
         dmg_local, dmg_web = dmg_refs
         dmg_url = "http://www.cherokee-project.com%s"%(dmg_web)
 
