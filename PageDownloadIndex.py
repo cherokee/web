@@ -26,6 +26,8 @@
 import re
 import os
 import CTK
+import stat
+import time
 import Page
 from config import *
 
@@ -42,6 +44,37 @@ def sort_files (x, y):
         return cmp(x,y)
     return cmp(x,y)
 
+def prettySize(size):
+    suffixes = [("B",2**10), ("K",2**20), ("M",2**30), ("G",2**40), ("T",2**50)]
+    for suf, lim in suffixes:
+        if size > lim:
+            continue
+        else:
+            return round(size/float(lim/2**10),2).__str__()+suf
+
+
+class FileEntry (CTK.Box):
+    def __init__ (self, web_path, local_path, filename):
+        CTK.Box.__init__ (self, {'class': "index-file-entry"})
+
+        local_fp  = os.path.join (local_path, filename)
+        file_stat = os.stat (local_fp)
+
+        # Link
+        link = os.path.join (URL_BASE, '.'+web_path, filename)
+        self += CTK.Box ({'class': 'name'}, CTK.Link (link, CTK.RawHTML(filename)))
+
+        # Size / <DIR>
+        if os.path.isdir(local_fp):
+            self += CTK.Box ({'class': 'size'}, CTK.RawHTML("&lt;DIR&gt;"))
+        else:
+            size = prettySize(file_stat[stat.ST_SIZE])
+            self += CTK.Box ({'class': 'size'}, CTK.RawHTML(size))
+
+        # Date and hour
+        date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime (file_stat[stat.ST_MTIME]))
+        self += CTK.Box ({'class': 'date'}, CTK.RawHTML(date_str))
+
 
 class Index (CTK.Box):
     def __init__ (self, web_path):
@@ -54,16 +87,13 @@ class Index (CTK.Box):
             self += CTK.Link (up_dir, CTK.RawHTML(_("Parent Directory")))
             self += CTK.RawHTML ("<br/>")
 
-        fp = os.path.join (DOWNLOADS_LOCAL, "."+web_path)
+        local_path = os.path.join (DOWNLOADS_LOCAL, "."+web_path)
 
-        files = os.listdir (fp)
+        files = os.listdir (local_path)
         files.sort (sort_files)
 
         for f in files:
-            link = os.path.join (URL_BASE, '.'+web_path, f)
-
-            self += CTK.Link (link, CTK.RawHTML(f))
-            self += CTK.RawHTML ("<br/>")
+            self += FileEntry (web_path, local_path, f)
 
 
 class Dispatcher:
