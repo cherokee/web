@@ -52,6 +52,7 @@ OS_OPTIONS = [
 
 DOC_APTGET = 'http://www.cherokee-project.com/doc/basics_installation_unix.html#APT'
 DOC_EPEL_URL = 'http://fedoraproject.org/wiki/EPEL'
+DOC_FEDORA_PACKAGE_URL = 'https://admin.fedoraproject.org/community/?package=cherokee#package_maintenance'
 
 class OS_Panel (CTK.Box):
     class OS_Icon (CTK.Image):
@@ -262,6 +263,11 @@ class Download_Linux:
         box += CTK.RawHTML ('<h3>Fedora</h3>')
         box += CTK.RawHTML ('Install Cherokee from Fedora\'s Yum repository')
         box += CTK.RawHTML ('<pre class="terminal">yum install cherokee</pre>')
+        details = CTK.Box({'class': 'platform-details'})
+        details += CTK.RawHTML ('See Fedora\'s ')
+        details += CTK.LinkWindow (DOC_FEDORA_PACKAGE_URL, CTK.RawHTML('package information'))
+        details += CTK.RawHTML (' for later versions than what\'s included with the latest distribution.')
+        box += details
         content += box
 
         return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
