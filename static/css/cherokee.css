@@ -460,6 +460,8 @@ ul.list li {
 
 #platform-ubuntu { background: url('/static/images/icon-ubuntu.png') no-repeat; }
 #platform-debian { background: url('/static/images/icon-debian.png') no-repeat; margin-top: 32px; }
+#platform-epel { background: url('/static/images/icon-epel.png') no-repeat; margin-top: 32px; }
+#platform-fedora { background: url('/static/images/icon-fedora.png') no-repeat; margin-top: 32px; }
 
 #macosx-steps {
 }

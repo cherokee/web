@@ -51,6 +51,7 @@ OS_OPTIONS = [
 ]
 
 DOC_APTGET = 'http://www.cherokee-project.com/doc/basics_installation_unix.html#APT'
+DOC_EPEL_URL = 'http://fedoraproject.org/wiki/EPEL'
 
 class OS_Panel (CTK.Box):
     class OS_Icon (CTK.Image):
@@ -241,9 +242,28 @@ class Download_Linux:
         details += CTK.RawHTML ('%s '%(_('Please, check the documentation for further')))
         details += CTK.LinkWindow (DOC_APTGET, CTK.RawHTML(_('details')))
         details += CTK.RawHTML ('.')
-
         box += details
         content += box
+
+        #EPEL
+        box = CTK.Box({'class': 'platform', 'id': 'platform-epel'})
+        box += CTK.RawHTML ('<h3>Red Hat Enterprise Linux (RHEL)/CentOS</h3>')
+        box += CTK.RawHTML ('Install Cherokee from the EPEL (Extra Packages for Enterprise Linux) repository')
+        box += CTK.RawHTML ('<pre class="terminal">yum install cherokee</pre>')
+        details = CTK.Box({'class': 'platform-details'})
+        details += CTK.RawHTML ('Check the ')
+        details += CTK.LinkWindow (DOC_EPEL_URL, CTK.RawHTML('EPEL documentation'))
+        details += CTK.RawHTML (' for details on making EPEL repositories available on your system.')
+        box += details
+        content += box
+
+        #Fedora
+        box = CTK.Box({'class': 'platform', 'id': 'platform-fedora'})
+        box += CTK.RawHTML ('<h3>Fedora</h3>')
+        box += CTK.RawHTML ('Install Cherokee from Fedora\'s Yum repository')
+        box += CTK.RawHTML ('<pre class="terminal">yum install cherokee</pre>')
+        content += box
+
         return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
 
 
