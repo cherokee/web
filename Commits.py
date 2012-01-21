@@ -48,7 +48,7 @@ def get_commit_list (num):
     run ('git pull')
 
     # Query SVN server
-    cont = run ('git log --pretty=format:"%an||%ar||%s||%H" -'+str(num))
+    cont = run ('git log --branches --pretty=format:"%an||%ar||%s||%H" -'+str(num))
 
     # Parse
     parsed = []
