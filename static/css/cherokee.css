@@ -383,6 +383,7 @@ ul.list li {
 
 .tweet, .commit, .mail {
   margin-bottom: 15px;
+  clear: both;
 }
 
 .date {
