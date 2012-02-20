@@ -700,3 +700,22 @@ h2[id^='_a_'] {
 .github-link {
   background: transparent url(../images/github.png) no-repeat;
 }
+
+.download-index-title {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.download-index-table {
+  margin: 20px auto;
+  width: 60%;
+}
+
+.download-index-table th {
+  border-bottom: 2px solid #174783;
+  color: #174783;
+}
+
+.download-index-table td {
+  padding: 3px;
+}
