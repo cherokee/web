@@ -53,47 +53,55 @@ def prettySize(size):
             return round(size/float(lim/2**10),2).__str__()+suf
 
 
-class FileEntry (CTK.Box):
-    def __init__ (self, web_path, local_path, filename):
-        CTK.Box.__init__ (self, {'class': "index-file-entry"})
-
-        local_fp  = os.path.join (local_path, filename)
-        file_stat = os.stat (local_fp)
-
-        # Link
-        link = os.path.join (URL_BASE, '.'+web_path, filename)
-        self += CTK.Box ({'class': 'name'}, CTK.Link (link, CTK.RawHTML(filename)))
-
-        # Size / <DIR>
-        if os.path.isdir(local_fp):
-            self += CTK.Box ({'class': 'size'}, CTK.RawHTML("&lt;DIR&gt;"))
-        else:
-            size = prettySize(file_stat[stat.ST_SIZE])
-            self += CTK.Box ({'class': 'size'}, CTK.RawHTML(size))
-
-        # Date and hour
-        date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime (file_stat[stat.ST_MTIME]))
-        self += CTK.Box ({'class': 'date'}, CTK.RawHTML(date_str))
-
-
 class Index (CTK.Box):
     def __init__ (self, web_path):
         CTK.Box.__init__ (self)
 
-        self += CTK.RawHTML ('<h1>Index of %s</h1>'%(web_path or "/"))
+        self += CTK.RawHTML ('<h1 class="download-index-title">Index of %s</h1>'%(web_path or "/"))
+
+        table = CTK.Table({'class': 'download-index-table'})
+        table.set_header (row=True, num=1)
+        table += [CTK.RawHTML(_("Name")), CTK.RawHTML(_("Last Modification")), CTK.RawHTML(_("Size"))]
 
         if web_path.count('/') >= 1:
             up_dir = os.path.realpath (URL_BASE + web_path + "/../")
-            self += CTK.Link (up_dir, CTK.RawHTML(_("Parent Directory")))
-            self += CTK.RawHTML ("<br/>")
+            table += [CTK.Link (up_dir, CTK.RawHTML(_("Parent Directory")))]
 
         local_path = os.path.join (DOWNLOADS_LOCAL, "."+web_path)
 
         files = os.listdir (local_path)
         files.sort (sort_files)
 
+        cont = CTK.Container()
         for f in files:
-            self += FileEntry (web_path, local_path, f)
+            row       = []
+            local_fp  = os.path.join (local_path, f)
+            file_stat = os.stat (local_fp)
+
+            link  = os.path.join (URL_BASE, '.'+web_path, f)
+            cont += CTK.Link (link, CTK.RawHTML(f))
+            row  += cont
+            cont.Empty()
+
+            # Date and hour
+            date_str = time.strftime("%Y-%m-%d %H:%M", time.localtime (file_stat[stat.ST_MTIME]))
+            cont    += CTK.RawHTML(date_str)
+            row     += cont
+            cont.Empty()
+
+            # Size / <DIR>
+            if os.path.isdir(local_fp):
+                cont += CTK.RawHTML("&lt;DIR&gt;")
+            else:
+                size  = prettySize(file_stat[stat.ST_SIZE])
+                cont += CTK.RawHTML(size)
+
+            row += cont
+            cont.Empty()
+
+            table += row
+
+        self += table
 
 
 class Dispatcher:
