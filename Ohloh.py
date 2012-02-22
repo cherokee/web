@@ -40,7 +40,6 @@ class Languages (CTK.Box):
     def __init__ (self):
         CTK.Box.__init__ (self, {'class': 'ohloh-languages-box'})
         self += CTK.RawHTML (LANGUAGES_HTML)
-        self += CTK.RawHTML (js = COCOMO_FIX_JS)
 
 class Cocomo (CTK.Box):
     def __init__ (self):
