@@ -40,7 +40,7 @@ class PageForum:
     def __call__ (self):
         title = "Forums"
 
-        page = Page.Page_Menu_Side (title=title)
+        page = Page.Page_Menu (title=title)
         page += CTK.RawHTML ("<h1>%s</h1>"%(title))
         page += CTK.RawHTML (FORUM_EMBEDDABLE_HTML)
 
