@@ -32,12 +32,6 @@ import config
 import cPickle
 import xmlrpclib
 
-if 'debug' in dir(config):
-    _debug = config.debug
-    import sys
-else:
-    _debug = 0
-
 URL_NEW_SUBMIT = '/proud/apply'
 
 CACHE_EXPIRATION = 15 * 60 # 10mins
@@ -69,8 +63,7 @@ class DomainList_Widget (CTK.Box):
             domains = cPickle.load (open (config.PROUD_PICKLE, 'r'))
         except (IOError, EOFError) as e: # This exception means a corrupt pickle failed to load
             # log the exception and assume an empty list
-            if _debug:
-                sys.stderr.write("Error: Can't unpickle proud domain list.\n%s\n"%(e,))
+			sys.stderr.write("Error: Can't unpickle proud domain list.\n%s\n"%(e,))
             domains = []
 
         domains_clean = filter (lambda d: d['publish'], domains)
