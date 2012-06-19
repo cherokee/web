@@ -59,9 +59,15 @@ class DomainList_Widget (CTK.Box):
         CTK.Box.__init__ (self, {'class': 'domain_list'})
 
         # Load, filter and sort the domain list
-        domains = cPickle.load (open (config.PROUD_PICKLE, 'r'))
+        try:
+            domains = cPickle.load (open (config.PROUD_PICKLE, 'r'))
+        except (IOError, EOFError) as e: # This exception means a corrupt pickle failed to load
+            domains = []
+
         domains_clean = filter (lambda d: d['publish'], domains)
         domains_clean.sort (domain_cmp)
+        if not domains_clean: # puke in the napkin, politely
+            domains_clean = [{'domain':'Sorry: list broken!', 'page_rank':0}]
 
         # Render the domain list
         l = CTK.List()
