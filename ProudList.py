@@ -62,8 +62,6 @@ class DomainList_Widget (CTK.Box):
         try:
             domains = cPickle.load (open (config.PROUD_PICKLE, 'r'))
         except (IOError, EOFError) as e: # This exception means a corrupt pickle failed to load
-            # log the exception and assume an empty list
-			sys.stderr.write("Error: Can't unpickle proud domain list.\n%s\n"%(e,))
             domains = []
 
         domains_clean = filter (lambda d: d['publish'], domains)
