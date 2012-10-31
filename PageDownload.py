@@ -246,6 +246,17 @@ class Download_FreeBSD:
 
 class Download_Linux:
 
+	# Ubuntu
+        box = CTK.Box({'class': 'platform', 'id': 'platform-ubuntu'})
+        box += CTK.RawHTML ('<h3>Ubuntu</h3>')
+        box += CTK.RawHTML ('Open a terminal and enter:')
+        box += CTK.RawHTML ('<pre class="terminal">sudo add-apt-repository ppa:cherokee-webserver/ppa</pre>')
+        box += CTK.RawHTML ('After that, you should tell your system to pull down the latest list of software from each archive it knows about, including the PPA you just added:')
+        box += CTK.RawHTML ('<pre class="terminal">sudo apt-get update</pre>')
+        box += CTK.RawHTML ("Now you're ready to install Cherokee from the PPA:")
+        box += CTK.RawHTML ('<pre class="terminal">sudo apt-get install cherokee cherokee-admin</pre>')
+        content += box
+
         # Debian
         box = CTK.Box({'class': 'platform', 'id': 'platform-debian'})
         box += CTK.RawHTML ('<h3>Debian</h3>')
