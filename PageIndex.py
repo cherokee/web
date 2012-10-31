@@ -69,7 +69,7 @@ class Highlights (CTK.Container):
 
     FEATURES = {
         'Modern Technologies': "Cherokee supports the most widespread Web technologies: FastCGI, SCGI, PHP, uWSGI, SSI, CGI, LDAP, TLS/SSL, HTTP proxying, Video streaming, Content caching, Traffic Shaping, etc.",
-        'Cross Platform':      "Cherokee runs on Linux, MacOS X, Solaris, and BSD. A native Windows port is on the works.",
+        'Cross Platform':      "Cherokee runs on Linux, MacOS X, Solaris, and BSD. A native Windows port is in the works.",
         'User friendly':       "All the configuration is done through Cherokee-Admin, a beautiful and powerful Web interface.",
         'Web Apps repository': "Cherokee allows to deploy Web Apps optimally, in seconds, with just a few mouse clicks."
     }
