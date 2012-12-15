@@ -34,12 +34,14 @@ MACOSX_TITLE  = N_("Download Cherokee for MacOS X")
 LINUX_TITLE   = N_("Download Cherokee for Linux")
 SOURCE_TITLE  = N_("Install Cherokee for the Source Code")
 WINDOWS_TITLE = N_("Download Cherokee for Window")
+FREEBSD_TITLE = N_("Download cherokee for FreeBSD")
 
 URL_BASE      = "/downloads"
 URL_MACOSX    = "/downloads/macosx"
 URL_MACOSX_2  = "/downloads/macosx/2"
 URL_LINUX     = "/downloads/linux"
 URL_WINDOWS   = "/downloads/windows"
+URL_FREEBSD   = "/download/freebsd"
 URL_SOURCE    = "/downloads/source"
 URL_VIDEO1    = "/downloads/video/1"
 
@@ -47,6 +49,7 @@ OS_OPTIONS = [
     ('macosx',  N_('MacOS X')),
     ('linux',   N_('Linux')),
     ('windows', N_('Windows')),
+    ('freebsd', N_('FreeBSD')),
     ('source',  N_('Source Code')),
 ]
 
@@ -80,6 +83,12 @@ class OS_Panel (CTK.Box):
             for key in ('windows', 'net clr'):
                 if key in agent:
                     self.os_selected = 'windows'
+                    break
+
+if not self.os_selected:
+            for key in ('freebsd', 'bsd'):
+                if key in agent:
+                    self.os_selected = 'freebsd'
                     break
 
         if not self.os_selected:
@@ -124,7 +133,7 @@ class Download_MacOSX:
             mbs = 0
         ver = re.findall (r'(\d+\.\d+\.\d+)', dmg_web)[0]
 
-        download_button = CTK.Button ('Get Cherokee %s DMG'%(ver)) # — %sMb'%(mbs))
+        download_button = CTK.Button ('Get Cherokee %s DMG'%(ver)) # ??? %sMb'%(mbs))
         download_button.bind ('click', CTK.DruidContent__JS_to_goto (download_button.id, URL_MACOSX_2))
 
         content = CTK.Container()
@@ -218,12 +227,26 @@ class Download_Windows:
 
         return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
 
-
-class Download_Linux:
+class Download_FreeBSD:
     def __call__ (self):
         content = CTK.Container()
 
-        # Ubuntu
+        # FreeBSD
+        box = CTK.Box({'class': 'platform', 'id': 'platform-freebsd'})
+        box += CTK.RawHTML ('<h3>FreeBSD</h3>')
+        box += CTK.RawHTML ('Open a terminal and enter:')
+        box += CTK.RawHTML ('<pre class="terminal">sudo cd /usr/ports/www/cherokee && make install clean</pre>')
+        box += CTK.RawHTML ('If using pkgng:')
+        box += CTK.RawHTML ('<pre class="terminal">sudo pkg install cherokee</pre>')
+        box += CTK.RawHTML ("If you just want the package:")
+        box += CTK.RawHTML ('<pre class="terminal">sudo pkg_add -r cherokee (Will soon be defuncted) </pre>')
+        content += box
+
+        return CTK.HTTP_Cacheable (60, body=content.Render().toStr())
+
+class Download_Linux:
+
+	# Ubuntu
         box = CTK.Box({'class': 'platform', 'id': 'platform-ubuntu'})
         box += CTK.RawHTML ('<h3>Ubuntu</h3>')
         box += CTK.RawHTML ('Open a terminal and enter:')
@@ -321,5 +344,6 @@ CTK.publish (r'^%s(\.html)?$'%(URL_BASE), QuickStart)
 CTK.publish (r'^%s'  %(URL_MACOSX),       Download_MacOSX)
 CTK.publish (r'^%s/2'%(URL_MACOSX),       Download_MacOSX_2)
 CTK.publish (r'^%s'  %(URL_LINUX),        Download_Linux)
+CTK.publish (r'^%s'  %(URL_FREEBSD),        Download_FreeBSD)
 CTK.publish (r'^%s'  %(URL_SOURCE),       Download_Source)
 CTK.publish (r'^%s'  %(URL_WINDOWS),      Download_Windows)
